@@ -10,9 +10,9 @@ import javax.swing.ImageIcon;
  *
  * @author fruda
  */
-public class Items {
+public class Item {
     
-    public Items(int itemId, String name, String description, double price, int quantity) {
+    public Item(int itemId, String name, String description, double price, int quantity) {
         this.itemId = itemId;
         this.name = name;
         this.description = description;
