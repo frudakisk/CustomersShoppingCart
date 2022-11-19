@@ -26,48 +26,39 @@ When the seller logs in, a window opens where the current state of the inventory
  
 # Use Cases
  
-- [] 
 ### User Logs In
 A User (customer) shall be able to log in to the application with a username and password so that they have access to the application and their shopping cart
 An admin (seller) shall be able to log in to the application with a username and password so that they have access to the application and their products. The homepage that will pull up will display information about their product inventories. The admin will be able to add and edit product information on this page. 
- 
-- [] 
+
 ### User (customer/seller) enters their username
 User enters their password
 User submits their username and password
 Logged in user is authenticated and confirmed
 User is brought to home page depending on their user status(seller or customer)
  
-- [] 
 ### User signs up
 If you are a new user, you will have to create an account. When creating an account. The form will also ask for simple things such as first and last name, email, etc. 
 Admin accounts will not be able to be created, only one seller will have access to the product information and be able to edit it. 
  
-- []
 ### New user selects the “Sign Up” button
 A window pops-up and the user must fill out a form asking for first and last name, email address, username, and setting password. By default, the account type is the customer. (admin will need to be created manually by a system manager)
 The user submits the form and their new account is created
 The user is directed back to the login screen.
- 
-- [] 
+  
 ### Customer Adds Items to Shopping Cart
 The customer shall be able to click on a button to add items to their shopping cart presented on the homepage. When the customer clicks a button associated with a product, that product shall be added to the currently logged-in user's shopping cart. 
  
-- [] 
 ### The customer selects the “+” button next to the product name
 The product and its quantity of 1 is added to the customer's shopping cart
 
-- [] 
 #### Variant Scenario: Product Inventory Quantity is 0
 In the case that when adding a product to the shopping cart, the inventory quantity is 0, a message shall be presented to the customer stating that there is no more of the product in the inventory
 
-- []
 ### The customer selects the “+” button near the product name and quantity in the shopping cart.
 Product inventory quantity value is already 0, send a message to the customer saying:
 “This product has been sold out”
 Product inventory quantity value stays at 0 and the Customer product shopping cart is not updated with new product
 
-- [] 
 ### Customer Adds More Existing Items in Shopping Cart
 The customer shall be able to increase the quantity of a specific product in their shopping cart view so that they don’t have to search for the item in the shopping view and click it multiple times
 
@@ -178,14 +169,6 @@ The system will navigate back to the homepage
 
 ### Website Customer Support 
 a. A phone number and email will be available at the bottom of the page with a note displaying “Problems or Comments? Please reach out at 555-555-555 or support@shopping.com” We plan on not implementing a custom messaging system for a small store. 
- 
-
-
-
-
-
-
-
 
 # Platforms
 For this project we will use multiple different platforms and libraries to successfully implement our idea. Below is a list of software and libraries we shall be using to organize our code, create diagrams, sketch out frameworks, and perform certain implementations of our code.
