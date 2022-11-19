@@ -4,7 +4,7 @@
  */
 package HomePages;
 
-import Panels.CustomerHomePageItemPanel;
+import Panels.*;
 import customersshoppingcart.Item;
 import java.awt.*;
 import java.awt.event.*;
@@ -25,7 +25,8 @@ public class CustomerHomePage extends JFrame{
     //setup components for North
     private JLabel welcomeLabel = new JLabel("Welcome, username!");
     private JLabel titleLabel = new JLabel("Customer Shopping");
-    private JLabel costInCartLabel = new JLabel("$0.00");
+    //private JLabel costInCartLabel = new JLabel("$0.00");
+    private JPanel pricePanel = new PriceShoppingCartPanel(0.00);
     private JPanel northPanel = new JPanel();
     
     //setup components for Center
@@ -40,7 +41,7 @@ public class CustomerHomePage extends JFrame{
         northPanel.setLayout(new GridLayout(1,3));
         northPanel.add(welcomeLabel);
         northPanel.add(titleLabel);
-        northPanel.add(costInCartLabel);
+        northPanel.add(pricePanel);
         
         //setup panel for Center
         centerPanel.setLayout(new GridLayout(temp.size(),1));

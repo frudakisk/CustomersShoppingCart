@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 /**
- *
+ * This is the main file for this application
  * @author fruda
  */
 public class CustomersShoppingCart {
