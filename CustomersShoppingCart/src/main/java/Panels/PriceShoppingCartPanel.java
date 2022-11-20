@@ -20,7 +20,10 @@ public class PriceShoppingCartPanel extends JPanel{
     private JLabel priceValue = new JLabel();
     private JButton shoppingCartButton = new JButton("Cart");
     
-    
+    /***
+     * Constructor for the PriceShoppingCartPanel class
+     * @param price total price in shopping cart
+     */
     public PriceShoppingCartPanel(double price) {
         
         //add action listener for button
@@ -36,6 +39,10 @@ public class PriceShoppingCartPanel extends JPanel{
         add(shoppingCartButton);
     }
 
+    /***
+     * Action listener to segue from customer home page to shopping cart
+     * @return al the ActionListener object
+     */
     private ActionListener buttonAction() {
         ActionListener al;
         al = new ActionListener() {

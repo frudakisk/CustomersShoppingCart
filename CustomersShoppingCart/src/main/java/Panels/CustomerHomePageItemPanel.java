@@ -24,7 +24,12 @@ public class CustomerHomePageItemPanel extends JPanel{
     //TODO: change "..." to an image of a magnifying glass
     private JButton detailsButton = new JButton("...");
     
-    //now construct
+    /***
+     * Constructor for CustomerHomePageItemPanel. Grabs details from Item class
+     * @param pn product name
+     * @param price price of the item
+     * @param quantity the quantity of an item in stock
+     */
     public CustomerHomePageItemPanel(String pn, double price, int quantity) {
         
         //testing constructor methods

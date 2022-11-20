@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 /**
- *
+ * The Home page for customer logins. This is where shopping happens
  * @author fruda
  */
 public class CustomerHomePage extends JFrame{
@@ -32,8 +32,12 @@ public class CustomerHomePage extends JFrame{
     //setup components for Center
     private JPanel centerPanel = new JPanel();
     
+    /***
+     * Constructor for CustomerHomePage
+     * @param temp an ArrayList containing all items in inventory
+     */
     public CustomerHomePage(ArrayList<Item> temp) {
-        super("This is the title");
+        super("Home Page - Customer");
         
         this.temp = temp;
         
@@ -59,7 +63,7 @@ public class CustomerHomePage extends JFrame{
         this.getContentPane().add("North", northPanel);
         this.getContentPane().add(new JScrollPane(centerPanel));
         this.getContentPane().add("Center", centerPanel);
-
+    
         
         
         
