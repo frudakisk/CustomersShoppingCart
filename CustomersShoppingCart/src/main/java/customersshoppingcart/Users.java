@@ -5,11 +5,18 @@
 package customersshoppingcart;
 
 /**
- *
+ * This class contains information about each user (customer or seller)
  * @author fruda
  */
 public class Users {
     
+    /***
+     * Constructor for the user class
+     * @param id unique id for user
+     * @param name name of user
+     * @param password password for user login
+     * @param userStatus customer or seller
+     */
     public Users(int id, String name, String password, boolean userStatus) {
         this.idNumber = id;
         this.name = name;
@@ -17,15 +24,28 @@ public class Users {
         this.userStatus = userStatus;
     }
     
+    /***
+     * set the credit card number for a user
+     * @param ccn integer value
+     */
     public void addCreditCard(int ccn) {
         this.creditCardNumber = ccn;
     }
     
+    /***
+     * get the credit card number
+     * @return this.creditCardNumber
+     */
     public int getCreditCard() {
         return creditCardNumber;
     }
     
-    //case sensitive
+    /***
+     * verify the login information. This is case sensitive 
+     * @param username username of attempting user
+     * @param password password of attempting user
+     * @return boolean - true if info found, false otherwise
+     */
     public boolean verifyId(String username, String password) {
         if (this.name == username && this.password == password) {
             return true;

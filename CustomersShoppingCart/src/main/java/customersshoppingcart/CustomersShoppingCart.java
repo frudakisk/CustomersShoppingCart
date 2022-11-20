@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 /**
- *
+ * This is the main file for this application
  * @author fruda
  */
 public class CustomersShoppingCart {
@@ -32,6 +32,9 @@ public class CustomersShoppingCart {
     Item kiwi = new Item(1, "kiwi", "this is a kiwi", 0.75, 32);
     Item apple = new Item(1, "apple", "this is an apple", 1.99, 6);
     
+    /***
+     * Constructor for CustomersShoppingCart page
+     */
     public CustomersShoppingCart() {
         //Add in items from file
         tempArray.add(banana);
@@ -40,7 +43,10 @@ public class CustomersShoppingCart {
         tempArray.add(apple);
     }
     
-    
+    /***
+     * main function for running application
+     * @param args 
+     */
     public static void main(String[] args) {
         CustomersShoppingCart customer = new CustomersShoppingCart();
         CustomerHomePage window = new CustomerHomePage(customer.tempArray);

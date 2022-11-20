@@ -5,7 +5,7 @@
 package HomePages;
 
 /**
- *
+ * This is the home page for the Seller. Here they can edit inventory
  * @author fruda
  */
 public class SellerHomePage {
