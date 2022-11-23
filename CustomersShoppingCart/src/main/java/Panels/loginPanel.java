@@ -64,6 +64,7 @@ public class loginPanel extends JPanel {
                 String user = username.getText();
                 char[] cpswrd = password.getPassword();
                 String pswrd = new String(cpswrd);
+                
                 try  
                 {  
                    createFolder();

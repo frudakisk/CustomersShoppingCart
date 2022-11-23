@@ -15,7 +15,7 @@ import javax.swing.*;
  */
 public class loginPage extends JFrame {
     
-    private loginPanel loginPanel = new loginPanel();
+    private loginPanel2 loginPanel = new loginPanel2();
     private JPanel northPanel = new JPanel();
     private boolean x = false;
     public loginPage(){
@@ -25,7 +25,7 @@ public class loginPage extends JFrame {
         this.getContentPane().add("North", northPanel);
        
     }
-    public loginPanel getLoginPanel(){
+    public loginPanel2 getLoginPanel(){
         return loginPanel;
     }
     
