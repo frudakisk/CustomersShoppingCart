@@ -3,12 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package customersshoppingcart;
-
+import java.io.*;
 /**
  * This class contains information about each user (customer or seller)
  * @author fruda
  */
-public class Users {
+public class Users implements Serializable {
     
     /***
      * Constructor for the user class
@@ -47,10 +47,7 @@ public class Users {
      * @return boolean - true if info found, false otherwise
      */
     public boolean verifyId(String username, String password) {
-        if (this.name == username && this.password == password) {
-            return true;
-        }
-        return false;
+        return (this.name.equals(username) && this.password.equals(password));
     }
     
     

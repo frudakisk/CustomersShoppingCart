@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+
 /**
  * This panel will hold the total cost of items in shopping cart
  * and a button to redirect to the shopping cart view

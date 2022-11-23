@@ -1,0 +1,7 @@
+Username:nick
+Password:12345
+admin:0
+
+Username:john
+Password:12345
+admin:0

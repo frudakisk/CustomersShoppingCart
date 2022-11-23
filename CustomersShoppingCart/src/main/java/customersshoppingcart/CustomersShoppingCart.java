@@ -8,6 +8,7 @@ package customersshoppingcart;
 import HomePages.CustomerHomePage;
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import loginPage.*;
 
 /**
  * This is the main file for this application
@@ -49,9 +50,22 @@ public class CustomersShoppingCart {
      */
     public static void main(String[] args) {
         CustomersShoppingCart customer = new CustomersShoppingCart();
-        CustomerHomePage window = new CustomerHomePage(customer.tempArray);
+        CustomerHomePage customerHomePage = new CustomerHomePage(customer.tempArray);
+        boolean loginsuc=false;
+        loginPage loginPage = new loginPage();
+        JFrame window = loginPage;
         window.setSize(500,500);
         window.setVisible(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        while(!loginsuc){
+            if (loginPage.getLoginPanel().getLoginSuccess()){
+                window.dispose();
+                
+                window = customerHomePage;
+                window.setSize(500,500);
+                window.setVisible(true);
+                loginsuc = true;
+            }
+        }
     }
 }
