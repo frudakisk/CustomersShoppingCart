@@ -20,7 +20,7 @@ public class loginPanel2 extends JPanel {
     private JButton register = new JButton("Register");
     private boolean loginSuccess = false;
     private ArrayList<Users> userStorage= new ArrayList<>();
-    private boolean noUsers = true;
+    
     File f = new File("logins.txt");
     public boolean getLoginSuccess(){
         return loginSuccess; 
@@ -74,19 +74,13 @@ public class loginPanel2 extends JPanel {
                         int id;
                         try  
                         {  
-                           if(noUsers){
-                               id = 0;
-                               userSts = true;
-                               Users newUser = new Users(id, user, pswrd, userSts);
-                               userStorage.add(newUser);
-                               noUsers = false;
-                           }
-                           else{
+                           
+                           
                               userStorage = readFile();
                               id = userStorage.size() - 1;
                               Users newUser = new Users(id, user, pswrd, userSts);
                               userStorage.add(newUser);  
-                           }
+                           
                            addData(userStorage);
 
 
@@ -106,7 +100,7 @@ public class loginPanel2 extends JPanel {
     private void addData(ArrayList<Users> userStorage){
         try
         {
-            FileOutputStream fos = new FileOutputStream(f);
+            FileOutputStream fos = new FileOutputStream("logins.txt");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(userStorage);
             oos.close();
@@ -122,7 +116,7 @@ public class loginPanel2 extends JPanel {
         ArrayList<Users> userTemp = new ArrayList<>();
         try
         {
-            FileInputStream fis = new FileInputStream(f);
+            FileInputStream fis = new FileInputStream("logins.txt");
             ObjectInputStream ois = new ObjectInputStream(fis);
  
             userTemp = (ArrayList) ois.readObject();
