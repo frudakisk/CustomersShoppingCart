@@ -28,7 +28,6 @@ public class CustomerHomePage extends JFrame{
     //private JLabel costInCartLabel = new JLabel("$0.00");
     private JPanel pricePanel = new PriceShoppingCartPanel(0.00);
     private JPanel northPanel = new JPanel();
-    
     //setup components for Center
     private JPanel centerPanel = new JPanel();
     

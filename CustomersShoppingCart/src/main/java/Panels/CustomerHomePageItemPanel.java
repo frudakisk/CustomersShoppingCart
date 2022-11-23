@@ -23,7 +23,7 @@ public class CustomerHomePageItemPanel extends JPanel{
     private JButton addProductButton = new JButton("+");
     //TODO: change "..." to an image of a magnifying glass
     private JButton detailsButton = new JButton("...");
-    
+   
     /***
      * Constructor for CustomerHomePageItemPanel. Grabs details from Item class
      * @param pn product name
@@ -49,8 +49,7 @@ public class CustomerHomePageItemPanel extends JPanel{
         add(quantityField);
         add(addProductButton);
         add(detailsButton);
-        
-        
+               
     }
     
 }
