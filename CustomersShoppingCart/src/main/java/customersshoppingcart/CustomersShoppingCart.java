@@ -5,7 +5,8 @@
 
 package customersshoppingcart;
 
-import HomePages.CustomerHomePage;
+import HomePages.*;
+import java.io.*;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import loginPage.*;
@@ -17,7 +18,7 @@ import loginPage.*;
 public class CustomersShoppingCart {
 
     //Will contain all items read from file
-    public ArrayList<Item> tempArray = new ArrayList<>();
+    public ArrayList<Item> itemArray = new ArrayList<>();
     
     //TODO: replace with file output stream
     //each Item will read data from the file and create an new instance
@@ -38,11 +39,37 @@ public class CustomersShoppingCart {
      */
     public CustomersShoppingCart() {
         //Add in items from file
-        tempArray.add(banana);
-        tempArray.add(orange);
-        tempArray.add(kiwi);
-        tempArray.add(apple);
+        itemArray = readFile();
     }
+    
+    private ArrayList<Item> readFile() {
+        ArrayList<Item> itemTemp = new ArrayList<>();
+        try
+        {
+            FileInputStream fis = new FileInputStream("items.txt");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+ 
+            itemTemp = (ArrayList) ois.readObject();
+            
+            ois.close();
+            fis.close();
+            
+        } 
+        catch (IOException ioe) 
+        {
+            System.out.println("Error in readFile");
+            ioe.printStackTrace();
+          
+        } 
+        catch (ClassNotFoundException c) 
+        {
+            System.out.println("Class not found");
+            c.printStackTrace();
+     
+        }
+        return itemTemp;
+    }
+    
     
     /***
      * main function for running application
@@ -50,7 +77,8 @@ public class CustomersShoppingCart {
      */
     public static void main(String[] args) {
         CustomersShoppingCart customer = new CustomersShoppingCart();
-        CustomerHomePage customerHomePage = new CustomerHomePage(customer.tempArray);
+        CustomerHomePage customerHomePage = new CustomerHomePage(customer.itemArray);
+        SellerHomePage sellerHomePage = new SellerHomePage(customer.itemArray);
         boolean loginsuc=false;
         loginPage loginPage = new loginPage();
         JFrame window = loginPage;
@@ -61,7 +89,7 @@ public class CustomersShoppingCart {
             if (loginPage.getLoginPanel().getLoginSuccess()){
                 window.dispose();
                 
-                window = customerHomePage;
+                window = sellerHomePage;
                 window.setSize(500,500);
                 window.setVisible(true);
                 loginsuc = true;

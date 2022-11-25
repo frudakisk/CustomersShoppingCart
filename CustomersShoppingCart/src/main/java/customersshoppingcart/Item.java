@@ -4,13 +4,14 @@
  */
 package customersshoppingcart;
 
+import java.io.*;
 import javax.swing.ImageIcon;
 
 /**
  * This class is for products in inventory
  * @author fruda
  */
-public class Item {
+public class Item implements Serializable{
     
     /***
      * Constructor for Item class
@@ -75,6 +76,11 @@ public class Item {
      */
     public void updateImage(ImageIcon newImage) {
         this.image = newImage;
+    }
+    
+    @Override
+    public String toString() {
+        return itemId + " | " + name + " | " + price + " | " + quantity;
     }
     
     
