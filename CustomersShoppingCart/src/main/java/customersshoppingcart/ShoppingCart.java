@@ -18,7 +18,7 @@ import javax.swing.*;
 public class ShoppingCart extends JFrame{
     
     //will hold items in shopping cart
-    public ArrayList<Item> shoppingCart = new ArrayList<>();
+    public ArrayList<Item> shoppingCart;
  
     /***
      * Constructor for ShoppingCart class
@@ -28,6 +28,10 @@ public class ShoppingCart extends JFrame{
         //just some basic stuff in here to get started
         //add content to shopping cart
         shoppingCart = cart;
+        System.out.println("Showing ShoppingCart Frame arraylist");
+        for(int i = 0; i < shoppingCart.size(); i++) {
+            System.out.println(shoppingCart.get(i));
+        }
         this.getContentPane().setLayout(new BorderLayout());
     }
     

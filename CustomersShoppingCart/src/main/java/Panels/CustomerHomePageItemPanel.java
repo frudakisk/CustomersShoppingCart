@@ -28,17 +28,16 @@ public class CustomerHomePageItemPanel extends JPanel{
     private JButton detailsButton = new JButton("...");
     
     //window ancestor
-    JFrame ancestor = (JFrame) getWindowAncestor(this);
-    
-    
+    //JFrame ancestor = (JFrame) getWindowAncestor(this);
     /***
      * Constructor for CustomerHomePageItemPanel. Grabs details from Item class
      * @param pn product name
      * @param price price of the item
      * @param quantity the quantity of an item in stock
      */
-    public CustomerHomePageItemPanel(Item item) {
-        System.out.println(ancestor);
+    public CustomerHomePageItemPanel(Item item, ArrayList<Item> tempCart) {
+        //cart = tempCart;
+        //if we manipulate cart, we manipulate tempCart
         //name price quantity
         //testing constructor methods
         //will most likely do this for all components bc reading from database
@@ -49,7 +48,7 @@ public class CustomerHomePageItemPanel extends JPanel{
         this.quantityField.setText(quantityString);
         
         //Add action listeners to buttons
-        addProductButton.addActionListener(addToShoppingCart());
+        addProductButton.addActionListener(addToShoppingCart(item, tempCart));
         detailsButton.addActionListener(itemDetailsAction());
         
         //set the layout
@@ -66,15 +65,19 @@ public class CustomerHomePageItemPanel extends JPanel{
         
     }
     
-    private ActionListener addToShoppingCart() {
+    private ActionListener addToShoppingCart(Item item, ArrayList<Item> tempCart) {
         ActionListener al;
         al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //insert code here. refresh CustomerHomePage at end of action
-                //if item is not already in array add it and quantity = 1
-                //if item already in array quantity ++
-                
+                //don't worry about quantity yet
+                tempCart.add(item);
+                System.out.println("Looking at tempCart:");
+                for(int i = 0; i < tempCart.size(); i++){                    
+                    System.out.println(tempCart.get(i));
+                }
+
             }
             
         };

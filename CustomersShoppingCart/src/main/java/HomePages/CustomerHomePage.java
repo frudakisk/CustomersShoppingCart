@@ -23,11 +23,12 @@ public class CustomerHomePage extends JFrame{
     //setup components for North
     private JLabel welcomeLabel = new JLabel("Welcome, username!");
     private JLabel titleLabel = new JLabel("Customer Shopping");
-    private JPanel pricePanel = new PriceShoppingCartPanel(0.00);
+    private JPanel pricePanel = new PriceShoppingCartPanel(tempCart);
     private JPanel northPanel = new JPanel();
     
     //setup components for Center
     private JPanel centerPanel = new JPanel();
+
     
     /***
      * Constructor for CustomerHomePage
@@ -49,7 +50,8 @@ public class CustomerHomePage extends JFrame{
         
         //should go to num of items in inventory
         for(int i = 0; i < itemsArray.size(); i++) {
-            JPanel item = new CustomerHomePageItemPanel(itemsArray.get(i));
+            JPanel item = new CustomerHomePageItemPanel(itemsArray.get(i), tempCart);
+            //I think I can do a shallow copy of an arrayList and it still saves data
             centerPanel.add(item);    
         }
         
