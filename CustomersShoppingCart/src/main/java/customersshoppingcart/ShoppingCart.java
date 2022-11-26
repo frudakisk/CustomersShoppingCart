@@ -6,6 +6,7 @@ package customersshoppingcart;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import javax.swing.*;
 
 /**
@@ -15,13 +16,22 @@ import javax.swing.*;
  * @author fruda
  */
 public class ShoppingCart extends JFrame{
+    
+    //will hold items in shopping cart
+    public ArrayList<Item> shoppingCart;
  
     /***
      * Constructor for ShoppingCart class
      */
-    public ShoppingCart() {
+    public ShoppingCart(ArrayList<Item> cart) {
         super("This is the Title for Shopping Cart View");
         //just some basic stuff in here to get started
+        //add content to shopping cart
+        shoppingCart = cart;
+        System.out.println("Showing ShoppingCart Frame arraylist");
+        for(int i = 0; i < shoppingCart.size(); i++) {
+            System.out.println(shoppingCart.get(i));
+        }
         this.getContentPane().setLayout(new BorderLayout());
     }
     

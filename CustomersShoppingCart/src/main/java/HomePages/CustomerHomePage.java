@@ -17,20 +17,18 @@ import javax.swing.*;
  */
 public class CustomerHomePage extends JFrame{
     
-    //private JPanel test = new CustomerHomePageItemPanel("TEST LABEL");
-    //private JPanel test2 = new CustomerHomePageItemPanel("Banana");
-    //private JLabel testLabel = new JLabel("This is just a test");
     //Setting up data stream
-    public ArrayList<Item> temp = new ArrayList<>();
+    public ArrayList<Item> itemsArray = new ArrayList<>();
+    protected ArrayList<Item> tempCart = new ArrayList<>();
     //setup components for North
     private JLabel welcomeLabel = new JLabel("Welcome, username!");
     private JLabel titleLabel = new JLabel("Customer Shopping");
-    //private JLabel costInCartLabel = new JLabel("$0.00");
-    private JPanel pricePanel = new PriceShoppingCartPanel(0.00);
+    private JPanel pricePanel = new PriceShoppingCartPanel(tempCart);
     private JPanel northPanel = new JPanel();
     
     //setup components for Center
     private JPanel centerPanel = new JPanel();
+
     
     /***
      * Constructor for CustomerHomePage
@@ -39,7 +37,7 @@ public class CustomerHomePage extends JFrame{
     public CustomerHomePage(ArrayList<Item> temp) {
         super("Home Page - Customer");
         
-        this.temp = temp;
+        this.itemsArray = temp;
         
         //setup panel for North
         northPanel.setLayout(new GridLayout(1,3));
@@ -48,15 +46,16 @@ public class CustomerHomePage extends JFrame{
         northPanel.add(pricePanel);
         
         //setup panel for Center
-        centerPanel.setLayout(new GridLayout(temp.size(),1));
+        centerPanel.setLayout(new GridLayout(itemsArray.size(),1));
         
-        //inserting dummy item cells
         //should go to num of items in inventory
-        for(int i = 0; i < temp.size(); i++) {
-            JPanel item = new CustomerHomePageItemPanel(temp.get(i).name, temp.get(i).price, temp.get(i).quantity);
-            centerPanel.add(item);
-            
+        for(int i = 0; i < itemsArray.size(); i++) {
+            JPanel item = new CustomerHomePageItemPanel(itemsArray.get(i), tempCart);
+            //I think I can do a shallow copy of an arrayList and it still saves data
+            centerPanel.add(item);    
         }
+        
+        
         
         this.getContentPane().setLayout(new BorderLayout());
         
@@ -68,6 +67,11 @@ public class CustomerHomePage extends JFrame{
         
         
     }
+    
+    public ArrayList<Item> getCart() {
+        return tempCart;
+    }
+    
     
 //    //testing purposes
 //    public static void main(String args[]) {

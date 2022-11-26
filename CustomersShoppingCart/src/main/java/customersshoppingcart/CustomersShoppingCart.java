@@ -89,9 +89,10 @@ public class CustomersShoppingCart {
             if (loginPage.getLoginPanel().getLoginSuccess()){
                 window.dispose();
                 
-                window = sellerHomePage;
+                window = customerHomePage; //sellerHomePage
                 window.setSize(500,500);
                 window.setVisible(true);
+                window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 loginsuc = true;
             }
         }

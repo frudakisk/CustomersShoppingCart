@@ -4,9 +4,11 @@
  */
 package Panels;
 
+import customersshoppingcart.Item;
 import customersshoppingcart.ShoppingCart;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import javax.swing.*;
 
 
@@ -20,17 +22,23 @@ public class PriceShoppingCartPanel extends JPanel{
     //Create attributes
     private JLabel priceValue = new JLabel();
     private JButton shoppingCartButton = new JButton("Cart");
+    private double priceSum = 0.00;
     
     /***
      * Constructor for the PriceShoppingCartPanel class
      * @param price total price in shopping cart
      */
-    public PriceShoppingCartPanel(double price) {
+    public PriceShoppingCartPanel(ArrayList<Item> tempCart) {
         
         //add action listener for button
-        shoppingCartButton.addActionListener(buttonAction());
+        shoppingCartButton.addActionListener(buttonAction(tempCart));
         
-        String priceString = Double.toString(price);
+        //Get total price in shopping cart
+        for(int i = 0; i < tempCart.size(); i++) {
+            priceSum += tempCart.get(i).price;
+        }
+        
+        String priceString = Double.toString(priceSum);
         this.priceValue.setText(priceString);
         
         setLayout(new GridLayout(1,2));
@@ -44,13 +52,13 @@ public class PriceShoppingCartPanel extends JPanel{
      * Action listener to segue from customer home page to shopping cart
      * @return al the ActionListener object
      */
-    private ActionListener buttonAction() {
+    private ActionListener buttonAction(ArrayList<Item> tempCart) {
         ActionListener al;
         al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Cart Button has been clicked");
-                ShoppingCart cart = new ShoppingCart();
+                ShoppingCart cart = new ShoppingCart(tempCart);
                 cart.setSize(500,500);
                 cart.setVisible(true);
                 //cart.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
