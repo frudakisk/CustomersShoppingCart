@@ -14,19 +14,23 @@ import javax.swing.*;
  */
 public class Checkout extends JFrame{
     //labels
-    private JLabel title = new JLabel("Check Out");
-    private JLabel paymetLabel = new JLabel("1. Payment Method: ");
-    private JLabel reviewLabel = new JLabel("2. Review Items: ");
-    private JLabel TotalPriceLabel = new JLabel("Total Payment: $0.00 ");
-    private JLabel cardLabel = new JLabel("      Credit/Debit card Number:     123456789101112");
-    private JLabel cardNameLabel = new JLabel("      Name on Card:                        The Florida Resident");
-    private JLabel cardExpirationLabel = new JLabel("      Expiration on the card:            05/2025");
-    private JLabel zipcodeLabel = new JLabel("      Zipcode:                                  98765");
-
-    //TODO: add picture too
-
-
-
+    private JLabel title = new JLabel("Pay Now");
+    private JLabel paymetLabel = new JLabel("Payment Method: ");
+    private JLabel reviewLabel = new JLabel("Address: ");
+    private JLabel cardLabel = new JLabel("      Credit/Debit card Number:     ");
+    private JLabel cardNameLabel = new JLabel("      Name on Card:                        ");
+    private JLabel cardExpirationLabel = new JLabel("      Expiration on the card:            ");
+    private JLabel CVVLabel = new JLabel("      CVV: ");
+    private JLabel zipcodeLabel = new JLabel("      Zipcode:                                  ");
+    private JLabel AddressLabel = new JLabel("      Address");
+    private JLabel cityLabel = new JLabel("      City");
+    private JLabel stateLabel = new JLabel("      State");
+    private JLabel AddresszipLabel = new JLabel("      Zipcode");
+    
+    
+    
+    
+    
     // adding separator 
     JSeparator s = new JSeparator();
     JSeparator t = new JSeparator();
@@ -38,8 +42,16 @@ public class Checkout extends JFrame{
     private JButton continueButton = new JButton("Place your order");
     
     //textFields
-    private JTextField paymetField = new JTextField("This is where the Payment info will be");
-    private JTextField reviewField = new JTextField("This is where the Iten info will be");
+    private JTextField cardField = new JTextField();
+    private JTextField cardnameField = new JTextField();
+    private JTextField cardexpirationField = new JTextField();
+    private JTextField CVVField = new JTextField();
+    private JTextField zipcodeField = new JTextField();
+    private JTextField AddressField = new JTextField();
+    private JTextField cityField = new JTextField();
+    private JTextField stateField = new JTextField();
+    private JTextField AddresszipField = new JTextField();
+    
 
     //panels
     private JPanel northPanel = new JPanel();
@@ -49,9 +61,6 @@ public class Checkout extends JFrame{
     private JPanel eastPanel = new JPanel();
 
     
-    //stuff for file reading
-
-    
     
     public Checkout() {
         super("Checkout");
@@ -59,33 +68,32 @@ public class Checkout extends JFrame{
         this.setLayout(new BorderLayout());
         
         //set up border panels
-        //North panel
-        northPanel.add(title);
-
-
-        //Center Panel
-        centerPanel.setLayout(new GridLayout(3,2));
 
 
         //West Panel
-        westPanel.setLayout(new GridLayout(0,1));
+        westPanel.setLayout(new GridLayout(0,2));
         westPanel.add(a);
         westPanel.add(paymetLabel);
         westPanel.add(cardLabel);
+        westPanel.add(cardField);
         westPanel.add(cardNameLabel);
+        westPanel.add(cardnameField);
         westPanel.add(cardExpirationLabel);
+        westPanel.add(cardexpirationField);
+        westPanel.add(CVVLabel);
+        westPanel.add(CVVField);
         westPanel.add(zipcodeLabel);
+        westPanel.add(zipcodeField);
         westPanel.add(s);
         westPanel.add(reviewLabel);
-        westPanel.add(t);
-        westPanel.add(TotalPriceLabel);
-
-
-        //East Panel ........ will have the buttons for adding products on the checkout panel.
-        //centerPanel.add(TotalPriceLabel);
-
-
-
+        westPanel.add(AddressLabel);
+        westPanel.add(AddressField);
+        westPanel.add(cityLabel);
+        westPanel.add(cityField);
+        westPanel.add(stateLabel);
+        westPanel.add(stateField);
+        westPanel.add(AddresszipLabel);
+        westPanel.add(AddresszipField);
 
         //south Panel
         southPanel.setLayout(new GridLayout(1,2));
