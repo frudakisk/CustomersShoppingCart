@@ -18,6 +18,7 @@ public class loginPage extends JFrame {
     private loginPanel2 loginPanel = new loginPanel2();
     private JPanel northPanel = new JPanel();
     private boolean x = false;
+    
     public loginPage(){
         super("login");
         northPanel.add(loginPanel);
@@ -28,6 +29,14 @@ public class loginPage extends JFrame {
     public loginPanel2 getLoginPanel(){
         return loginPanel;
     }
+    
+    public boolean getIsUserAdmin() {
+        String username = loginPanel.username.getText();
+        char[] cpswrd = loginPanel.password.getPassword();
+        String pswrd = new String(cpswrd);
+        return loginPanel.isUserAdmin(username, pswrd);
+    }
+    
     
 
 }

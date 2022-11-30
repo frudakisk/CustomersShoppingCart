@@ -14,8 +14,8 @@ import java.util.*;
  * @author nicholasgiacobbe
  */
 public class loginPanel2 extends JPanel {
-    private JTextField username = new JTextField("username");
-    private JPasswordField password = new JPasswordField("password");
+    public JTextField username = new JTextField("username");
+    public JPasswordField password = new JPasswordField("password");
     private JButton login = new JButton("Login");
     private JButton register = new JButton("Register");
     private boolean loginSuccess = false;
@@ -143,6 +143,8 @@ public class loginPanel2 extends JPanel {
         for (Users i : userStorage){
             System.out.println(i.name+i.password);
             System.out.println(user+pswrd);
+            //testing if I can get admin boolean
+            System.out.println(i.name + " is admin: " + i.userStatus);
             if(i.verifyId(user, pswrd)){
                JOptionPane.showMessageDialog(null, "Login Successfully!!");
                     loginSuccess = true;
@@ -153,5 +155,14 @@ public class loginPanel2 extends JPanel {
             JOptionPane.showMessageDialog(null, "incorrect username/password");
         }
         
+    }
+    
+    public boolean isUserAdmin(String user, String pswrd) {
+        for (Users i : userStorage) {
+            if(i.name.equals(user)) {
+                return i.userStatus;
+            }
+        }
+        return false;
     }
 }

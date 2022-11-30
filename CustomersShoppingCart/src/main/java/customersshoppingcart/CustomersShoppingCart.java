@@ -88,8 +88,14 @@ public class CustomersShoppingCart {
         while(!loginsuc){
             if (loginPage.getLoginPanel().getLoginSuccess()){
                 window.dispose();
+                if(loginPage.getIsUserAdmin()){
+                    System.out.println("ADMIN PAGE");
+                    window = sellerHomePage;
+                } else {
+                    window = customerHomePage;
+                }
                 
-                window = customerHomePage; //sellerHomePage
+                //window = customerHomePage; //sellerHomePage
                 window.setSize(500,500);
                 window.setVisible(true);
                 window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
