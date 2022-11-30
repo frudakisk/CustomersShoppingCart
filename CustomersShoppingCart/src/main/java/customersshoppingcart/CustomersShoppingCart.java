@@ -28,11 +28,6 @@ public class CustomersShoppingCart {
 //        Item x = new Item(...);
 //        tempArray.add(x);
 //    }
-    //dummy items - remove lated
-    Item banana = new Item(1, "banana", "this is a banana", 1.25, 10);
-    Item orange = new Item(1, "orange", "this is an orange", 2.25, 15);
-    Item kiwi = new Item(1, "kiwi", "this is a kiwi", 0.75, 32);
-    Item apple = new Item(1, "apple", "this is an apple", 1.99, 6);
     
     /***
      * Constructor for CustomersShoppingCart page
