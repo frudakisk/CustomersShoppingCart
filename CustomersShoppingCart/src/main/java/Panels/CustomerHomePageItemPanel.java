@@ -41,10 +41,10 @@ public class CustomerHomePageItemPanel extends JPanel{
         //name price quantity
         //testing constructor methods
         //will most likely do this for all components bc reading from database
-        this.productName.setText(item.name);
-        String priceString = Double.toString(item.price);
+        this.productName.setText(item.getName());
+        String priceString = Double.toString(item.getPrice());
         this.productPrice.setText(priceString);
-        String quantityString = Integer.toString(item.quantity);
+        String quantityString = Integer.toString(item.getQuantity());
         this.quantityField.setText(quantityString);
         
         //Add action listeners to buttons
