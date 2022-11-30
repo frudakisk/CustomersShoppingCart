@@ -20,14 +20,15 @@ public class Item implements Serializable{
      * @param description a short description of the item
      * @param price the price of the item
      * @param quantity the quantity of the item in stock
+     * @param image location of image file
      */
-    public Item(int itemId, String name, String description, double price, int quantity) {
+    public Item(int itemId, String name, String description, double price, int quantity, String image) {
         this.itemId = itemId;
         this.name = name;
         this.description = description;
         this.price = price;
         this.quantity = quantity;
-        //this.image = image;
+        this.imageFileLocation = image;
     }
     
     /***
@@ -74,10 +75,30 @@ public class Item implements Serializable{
      * sets the image for an item
      * @param newImage the new image for the item
      */
-    public void updateImage(ImageIcon newImage) {
-        this.image = newImage;
+    public void updateImage(String newImage) {
+        this.imageFileLocation = newImage;
     }
-    
+    public int getItemId(){
+        return itemId;
+    }
+    public String getName(){
+        return name;
+    }
+    public String description(){
+        return description;
+    }
+    public double getPrice(){
+        return price;
+    }
+    public int getQuantity(){
+        return quantity;
+    }
+    public int getQuantitySold(){
+        return quantitySold;
+    }
+    private String getImageFileLocation(){
+        return imageFileLocation;
+    }
     @Override
     public String toString() {
         return itemId + " | " + name + " | " + price + " | " + quantity;
@@ -85,11 +106,11 @@ public class Item implements Serializable{
     
     
     //Attributes
-    public int itemId;
-    public String name;
-    public String description;
-    public double price;
-    public int quantity;
-    public int quantitySold;
-    public ImageIcon image;
+    private int itemId;
+    private String name;
+    private String description;
+    private double price;
+    private int quantity;
+    private int quantitySold;
+    private String imageFileLocation;
 }

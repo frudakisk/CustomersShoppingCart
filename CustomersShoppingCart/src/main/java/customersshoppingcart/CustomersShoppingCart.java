@@ -88,8 +88,12 @@ public class CustomersShoppingCart {
         while(!loginsuc){
             if (loginPage.getLoginPanel().getLoginSuccess()){
                 window.dispose();
-                
-                window = customerHomePage; //sellerHomePage
+                if(loginPage.getLoginPanel().getCurrentUser().userStatus){
+                    window = sellerHomePage;
+                }
+                else if(!loginPage.getLoginPanel().getCurrentUser().userStatus){
+                    window = customerHomePage;
+                }
                 window.setSize(500,500);
                 window.setVisible(true);
                 window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
