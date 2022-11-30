@@ -19,6 +19,7 @@ public class loginPanel2 extends JPanel {
     private JButton login = new JButton("Login");
     private JButton register = new JButton("Register");
     private boolean loginSuccess = false;
+    private Users currentUser;
     private ArrayList<Users> userStorage= new ArrayList<>();
     
     File f = new File("logins.txt");
@@ -33,6 +34,9 @@ public class loginPanel2 extends JPanel {
         add(password);
         add(login);
         add(register);
+    }
+    public Users getCurrentUser(){
+        return currentUser;
     }
 
     private ActionListener loginAction() {
@@ -146,6 +150,7 @@ public class loginPanel2 extends JPanel {
             if(i.verifyId(user, pswrd)){
                JOptionPane.showMessageDialog(null, "Login Successfully!!");
                     loginSuccess = true;
+                    currentUser = i;
                     break; 
             }
         }
