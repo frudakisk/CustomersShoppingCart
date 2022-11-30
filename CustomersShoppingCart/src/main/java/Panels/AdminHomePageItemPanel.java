@@ -27,10 +27,10 @@ public class AdminHomePageItemPanel extends JPanel{
     
     public AdminHomePageItemPanel(Item item) {
         //set components with actual data
-        name.setText(item.name);
-        String priceString = Double.toString(item.price);
+        name.setText(item.getName());
+        String priceString = Double.toString(item.getPrice());
         price.setText(priceString);
-        String quantityString = Integer.toString(item.quantity);
+        String quantityString = Integer.toString(item.getQuantity());
         quantity.setText(quantityString);
         
         //Setting up the item details panel

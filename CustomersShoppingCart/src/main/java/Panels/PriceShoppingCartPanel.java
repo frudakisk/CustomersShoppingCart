@@ -35,7 +35,7 @@ public class PriceShoppingCartPanel extends JPanel{
         
         //Get total price in shopping cart
         for(int i = 0; i < tempCart.size(); i++) {
-            priceSum += tempCart.get(i).price;
+            priceSum += tempCart.get(i).getPrice();
         }
         
         String priceString = Double.toString(priceSum);
