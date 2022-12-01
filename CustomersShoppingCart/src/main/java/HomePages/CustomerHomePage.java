@@ -19,11 +19,12 @@ public class CustomerHomePage extends JFrame{
     
     //Setting up data stream
     public ArrayList<Item> itemsArray = new ArrayList<>();
+    //the array that will hold all items in customers shopping cart
     protected ArrayList<Item> tempCart = new ArrayList<>();
     //setup components for North
     private JLabel welcomeLabel = new JLabel("Welcome, username!");
     private JLabel titleLabel = new JLabel("Customer Shopping");
-    private JPanel pricePanel = new PriceShoppingCartPanel(tempCart);
+    private PriceShoppingCartPanel pricePanel = new PriceShoppingCartPanel(tempCart);
     private JPanel northPanel = new JPanel();
     
     //setup components for Center
@@ -50,7 +51,9 @@ public class CustomerHomePage extends JFrame{
         
         //should go to num of items in inventory
         for(int i = 0; i < itemsArray.size(); i++) {
-            JPanel item = new CustomerHomePageItemPanel(itemsArray.get(i), tempCart);
+            //each itemPanel needs access to the tempCart so that we can add items
+            //to the cart!
+            JPanel item = new CustomerHomePageItemPanel(itemsArray.get(i), tempCart, pricePanel, this);
             //I think I can do a shallow copy of an arrayList and it still saves data
             centerPanel.add(item);    
         }

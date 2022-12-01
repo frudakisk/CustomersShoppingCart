@@ -4,6 +4,7 @@
  */
 package Panels;
 
+import HomePages.CustomerHomePage;
 import customersshoppingcart.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -25,25 +26,19 @@ public class CustomerHomePageItemPanel extends JPanel{
     private JLabel productPrice = new JLabel();
     private JLabel quantityField = new JLabel();
     private JLabel imageLabel = new JLabel();
-    //private JImage ImageIcon = new JImage();
     public JButton addProductButton = new JButton("+");
     //TODO: change "..." to an image of a magnifying glass
     private JButton detailsButton = new JButton("...");
     private ImageIcon ii;
-    //window ancestor
-    //JFrame ancestor = (JFrame) getWindowAncestor(this);
+    
     /***
      * Constructor for CustomerHomePageItemPanel. Grabs details from Item class
-     * @param pn product name
-     * @param price price of the item
-     * @param quantity the quantity of an item in stock
+     * @param item the current item for the cell
+     * @param tempCart holds items added from the store
+     * @param pricePanel the JPanel that holds current price and button to shopping cart view
      */
-    public CustomerHomePageItemPanel(Item item, ArrayList<Item> tempCart) {
-        //cart = tempCart;
-        //if we manipulate cart, we manipulate tempCart
-        //name price quantity
-        //testing constructor methods
-        //will most likely do this for all components bc reading from database
+    public CustomerHomePageItemPanel(Item item, ArrayList<Item> tempCart, PriceShoppingCartPanel pricePanel,
+            CustomerHomePage home) {
         this.productName.setText(item.getName());
         String priceString = Double.toString(item.getPrice());
         this.productPrice.setText(priceString);
@@ -53,23 +48,23 @@ public class CustomerHomePageItemPanel extends JPanel{
         
         //image
         SwingWorker sw = new SwingWorker() {
-        @Override
-        protected Object doInBackground() throws Exception {
-            Thread.sleep(5000);//simulate large image takes long to load
-            ii = new ImageIcon(scaleImage(120, 120, ImageIO.read(new File(item.getImageFileLocation()))));
-            return null;
-        }
+            @Override
+            protected Object doInBackground() throws Exception {
+                Thread.sleep(5000);//simulate large image takes long to load
+                ii = new ImageIcon(scaleImage(120, 120, ImageIO.read(new File(item.getImageFileLocation()))));
+                return null;
+            }
 
-        @Override
-        protected void done() { 
-            super.done();
-            imageLabel.setIcon(ii);
-        }
-    };
-    sw.execute();
+            @Override
+            protected void done() { 
+                super.done();
+                imageLabel.setIcon(ii);
+            }
+        };
+        sw.execute();
         
         //Add action listeners to buttons
-        addProductButton.addActionListener(addToShoppingCart(item, tempCart));
+        addProductButton.addActionListener(addToShoppingCart(item, tempCart, pricePanel, home));
         detailsButton.addActionListener(itemDetailsAction());
         
         //set the layout
@@ -86,7 +81,16 @@ public class CustomerHomePageItemPanel extends JPanel{
         
     }
     
-    private ActionListener addToShoppingCart(Item item, ArrayList<Item> tempCart) {
+    /***
+     * Action Listener to add item to shopping cart array & update cost label in pricePanel
+     * @param item the item of the current cell
+     * @param tempCart temporary cart that holds items added by customer
+     * @param pricePanel holds the current price of tempCart
+     * @param home the CustomerHomePage that needs to be repainted
+     * @return the action of adding to shopping cart and updating cart cost
+     */
+    private ActionListener addToShoppingCart(Item item, ArrayList<Item> tempCart, PriceShoppingCartPanel pricePanel,
+            CustomerHomePage home) {
         ActionListener al;
         al = new ActionListener() {
             @Override
@@ -98,9 +102,13 @@ public class CustomerHomePageItemPanel extends JPanel{
                 for(int i = 0; i < tempCart.size(); i++){                    
                     System.out.println(tempCart.get(i));
                 }
-
-            }
-            
+                //update the panel in the frame
+                pricePanel.updateCart();
+                pricePanel.repaintPriceValue();
+                System.out.println("Current Price: " + pricePanel.getPriceSum());
+                //repaint the parent JFrame?
+                home.repaint();
+            }           
         };
         return al;
     }
@@ -137,4 +145,5 @@ public class CustomerHomePageItemPanel extends JPanel{
         g2d.dispose();
         return bi;
     }
+    
 }
