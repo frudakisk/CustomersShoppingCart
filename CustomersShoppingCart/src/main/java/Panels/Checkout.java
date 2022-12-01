@@ -14,7 +14,6 @@ import javax.swing.*;
  */
 public class Checkout extends JFrame{
     //labels
-    private JLabel title = new JLabel("Pay Now");
     private JLabel paymetLabel = new JLabel("Payment Method: ");
     private JLabel reviewLabel = new JLabel("Address: ");
     private JLabel cardLabel = new JLabel("      Credit/Debit card Number:     ");
@@ -38,8 +37,8 @@ public class Checkout extends JFrame{
     
     
     //buttons
-    private JButton cancelButton = new JButton("Back");
-    private JButton continueButton = new JButton("Place your order");
+    private JButton cancelButton = new JButton("Cancel");
+    private JButton EnterButton = new JButton("Enter");
     
     //textFields
     private JTextField cardField = new JTextField();
@@ -98,10 +97,10 @@ public class Checkout extends JFrame{
         //south Panel
         southPanel.setLayout(new GridLayout(1,2));
         southPanel.add(cancelButton);
-        southPanel.add(continueButton);
+        southPanel.add(EnterButton);
         
         //set up button actions
-        continueButton.addActionListener(continueButtonAction());
+        EnterButton.addActionListener(EnterButtonAction());
         cancelButton.addActionListener(cancelButtonAction());
         
         //add panels to borderlayout
@@ -116,7 +115,7 @@ public class Checkout extends JFrame{
         this.setVisible(true);
     }
     
-    private ActionListener continueButtonAction() {
+    private ActionListener EnterButtonAction() {
         ActionListener al;
         al = new ActionListener() {
             public void actionPerformed(ActionEvent e){
