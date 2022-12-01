@@ -96,7 +96,7 @@ public class Item implements Serializable{
     public int getQuantitySold(){
         return quantitySold;
     }
-    private String getImageFileLocation(){
+    public String getImageFileLocation(){
         return imageFileLocation;
     }
     @Override

@@ -28,6 +28,7 @@ public class AddItemFrame extends JFrame{
     //buttons
     private JButton backButton = new JButton("Back");
     private JButton saveButton = new JButton("Save");
+    private JButton addImageButton = new JButton("Select Image");
     
     //textFields
     private JTextField nameField = new JTextField();
@@ -43,7 +44,7 @@ public class AddItemFrame extends JFrame{
     //stuff for file reading
     ArrayList<Item> itemArray = new ArrayList<>();
     File f = new File("items.txt");
-    
+    String imageLocation = null;
     
     public AddItemFrame() {
         super("Add Item");
@@ -64,13 +65,14 @@ public class AddItemFrame extends JFrame{
         centerPanel.add(descriptionLabel);
         centerPanel.add(descriptionField);
         //south panel
-        southPanel.setLayout(new GridLayout(1,2));
+        southPanel.setLayout(new GridLayout(1,3));
         southPanel.add(backButton);
+        southPanel.add(addImageButton);
         southPanel.add(saveButton);
         
         //set up button actions
         saveButton.addActionListener(saveButtonAction());
-        
+        addImageButton.addActionListener(imageAction());
         //add panels to borderlayout
         this.getContentPane().setLayout(new BorderLayout());
         this.getContentPane().add("North", northPanel);
@@ -95,7 +97,7 @@ public class AddItemFrame extends JFrame{
                 int quantity = Integer.parseInt(quantityField.getText());
                 String description = descriptionField.getText();
                 //TODO: logic to find itemId based on last id used in file
-                Item newItem = new Item(0, name, description, price, quantity);
+                Item newItem = new Item(0, name, description, price, quantity, imageLocation);
                 //TODO: add string representation of item to its file
                 System.out.println(newItem);
                 //read the file, save its content to array list, add new content
@@ -172,5 +174,28 @@ public class AddItemFrame extends JFrame{
     //testing purposes
     public static void main(String args[]) {
         AddItemFrame frame = new AddItemFrame();
+    }
+
+    private ActionListener imageAction() {
+       ActionListener al;
+        al = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //create a new item and save it to our file
+                System.out.println("addImage Button Clicked");
+               
+                //Close this add window after success
+                JFileChooser chooser = new JFileChooser();
+                chooser.showOpenDialog(null);
+                final File f = chooser.getSelectedFile();
+                String filename = f.getAbsolutePath();
+                if (f == null) {
+                    JOptionPane.showMessageDialog(null, "File Path is NULL!!");
+                }
+                imageLocation = filename;
+            }
+            
+        };
+        return al; 
     }
 }
