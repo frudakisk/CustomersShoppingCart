@@ -7,7 +7,10 @@ package Panels;
 import customersshoppingcart.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import static javax.swing.SwingUtilities.getWindowAncestor;
 
@@ -21,12 +24,12 @@ public class CustomerHomePageItemPanel extends JPanel{
     private JLabel productName = new JLabel();
     private JLabel productPrice = new JLabel();
     private JLabel quantityField = new JLabel();
-    private JLabel fakeImage = new JLabel("fakeImage");
+    private JLabel imageLabel = new JLabel();
     //private JImage ImageIcon = new JImage();
     public JButton addProductButton = new JButton("+");
     //TODO: change "..." to an image of a magnifying glass
     private JButton detailsButton = new JButton("...");
-    
+    private ImageIcon ii;
     //window ancestor
     //JFrame ancestor = (JFrame) getWindowAncestor(this);
     /***
@@ -47,6 +50,24 @@ public class CustomerHomePageItemPanel extends JPanel{
         String quantityString = Integer.toString(item.getQuantity());
         this.quantityField.setText(quantityString);
         
+        
+        //image
+        SwingWorker sw = new SwingWorker() {
+        @Override
+        protected Object doInBackground() throws Exception {
+            Thread.sleep(5000);//simulate large image takes long to load
+            ii = new ImageIcon(scaleImage(120, 120, ImageIO.read(new File(item.getImageFileLocation()))));
+            return null;
+        }
+
+        @Override
+        protected void done() { 
+            super.done();
+            imageLabel.setIcon(ii);
+        }
+    };
+    sw.execute();
+        
         //Add action listeners to buttons
         addProductButton.addActionListener(addToShoppingCart(item, tempCart));
         detailsButton.addActionListener(itemDetailsAction());
@@ -55,7 +76,7 @@ public class CustomerHomePageItemPanel extends JPanel{
         setLayout(new GridLayout(1,6));
         
         //insert the items into the panel layout now
-        add(fakeImage);//in placement for the image
+        add(imageLabel);//in placement for the image
         add(productName);
         add(productPrice);
         add(quantityField);
@@ -106,4 +127,14 @@ public class CustomerHomePageItemPanel extends JPanel{
         return al;
     }
     
+    public static BufferedImage scaleImage(int w, int h, BufferedImage img) throws Exception {
+        BufferedImage bi;
+        bi = new BufferedImage(w, h, BufferedImage.TRANSLUCENT);
+        Graphics2D g2d = (Graphics2D) bi.createGraphics();
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.addRenderingHints(new RenderingHints(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY));
+        g2d.drawImage(img, 0, 0, w, h, null);
+        g2d.dispose();
+        return bi;
+    }
 }
