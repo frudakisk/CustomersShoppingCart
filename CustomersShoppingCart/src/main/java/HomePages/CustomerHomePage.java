@@ -17,14 +17,14 @@ import javax.swing.*;
  */
 public class CustomerHomePage extends JFrame{
     
-    //Setting up data stream
+    //Setting up data stream contains all items in store
     public ArrayList<Item> itemsArray = new ArrayList<>();
-    //the array that will hold all items in customers shopping cart
-    protected ArrayList<Item> tempCart = new ArrayList<>();
+    //the array that will hold all items in customers shopping cart (subset of itemsArray)
+    public ArrayList<Item> tempCart = new ArrayList<>();
     //setup components for North
     private JLabel welcomeLabel = new JLabel("Welcome");
     private JLabel titleLabel = new JLabel("Customer Shopping");
-    private PriceShoppingCartPanel pricePanel = new PriceShoppingCartPanel(tempCart);
+    private PriceShoppingCartPanel pricePanel = new PriceShoppingCartPanel(tempCart, this);
     private JPanel northPanel = new JPanel();
     
     //setup components for Center
@@ -37,6 +37,8 @@ public class CustomerHomePage extends JFrame{
      */
     public CustomerHomePage(ArrayList<Item> temp) {
         super("Home Page - Customer");
+        
+        System.out.println("Contents of cart when entering customerhomepage: " + tempCart);
         
         this.itemsArray = temp;
         
@@ -75,6 +77,20 @@ public class CustomerHomePage extends JFrame{
         return tempCart;
     }
     
+    public void setCart(ArrayList<Item> newCart){
+        tempCart.clear();
+        for(int i = 0; i < newCart.size(); i++) {
+            tempCart.add(newCart.get(i));
+        }
+        System.out.println("After setCart(): " + tempCart);
+        pricePanel.updateCart();
+        pricePanel.repaintPriceValue();
+        //this.repaint()
+    }
+    
+    public void setPriceShoppingCartPanel(ArrayList<Item> cart) {
+        pricePanel = new PriceShoppingCartPanel(cart, this);
+    }
     
 //    //testing purposes
 //    public static void main(String args[]) {

@@ -4,6 +4,7 @@
  */
 package Panels;
 
+import HomePages.CustomerHomePage;
 import customersshoppingcart.Item;
 import customersshoppingcart.ShoppingCart;
 import java.awt.*;
@@ -29,11 +30,11 @@ public class PriceShoppingCartPanel extends JPanel{
      * Constructor for the PriceShoppingCartPanel class
      * @param tempCart a transfer of items in an array list to this small panel
      */
-    public PriceShoppingCartPanel(ArrayList<Item> tempCart) {
+    public PriceShoppingCartPanel(ArrayList<Item> tempCart, CustomerHomePage home) {
         
         cartCopy = tempCart;
         //add action listener for button
-        shoppingCartButton.addActionListener(buttonAction(tempCart));
+        shoppingCartButton.addActionListener(buttonAction(tempCart, home));
         
         //Get total price in shopping cart
         for(int i = 0; i < tempCart.size(); i++) {
@@ -74,16 +75,17 @@ public class PriceShoppingCartPanel extends JPanel{
      * Action listener to segue from customer home page to shopping cart
      * @return al the ActionListener object
      */
-    private ActionListener buttonAction(ArrayList<Item> tempCart) {
+    private ActionListener buttonAction(ArrayList<Item> tempCart, CustomerHomePage home) {
         ActionListener al;
         al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Cart Button has been clicked");
-                ShoppingCart cart = new ShoppingCart(tempCart);
+                home.dispose(); //remove current frame
+                ShoppingCart cart = new ShoppingCart(tempCart, home); //show new frame
                 cart.setSize(500,500);
                 cart.setVisible(true);
-                //cart.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                cart.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 
             }
         };
