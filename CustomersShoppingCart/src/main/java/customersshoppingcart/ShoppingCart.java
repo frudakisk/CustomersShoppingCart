@@ -4,6 +4,7 @@
  */
 package customersshoppingcart;
 
+import HomePages.CustomerHomePage;
 import Panels.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -30,14 +31,30 @@ public class ShoppingCart extends JFrame{
     //add in components for layout
     private JPanel northPanel = new JPanel();
     private JPanel centerPanel = new JPanel();
+    
+    //add in local components
+    private JButton backButton = new JButton("< Back");
+    private JButton checkOutButton = new JButton("Checkout >");
+    private JLabel title = new JLabel("Shopping Cart");
+    
  
     /***
      * Constructor for ShoppingCart class
      */
-    public ShoppingCart(ArrayList<Item> cart) {
+    public ShoppingCart(ArrayList<Item> cart, CustomerHomePage home) {
         super("Shopping Cart");
         //add content to shopping cart
         shoppingCart = cart;
+        
+        
+        //Settiing up the north panel
+        northPanel.setLayout(new GridLayout(1,3));
+        northPanel.add(backButton);
+        northPanel.add(title);
+        northPanel.add(checkOutButton);
+        
+        //add button action listeners
+        backButton.addActionListener(backAction(shoppingCart, home));
         
         //load the hashmap with shoppingCart content
         for(int i = 0; i < shoppingCart.size(); i++) {
@@ -84,6 +101,49 @@ public class ShoppingCart extends JFrame{
         }
         this.getContentPane().setLayout(new BorderLayout());
         this.getContentPane().add("Center", centerPanel);
+        this.getContentPane().add("North", northPanel);
+    }
+    
+    /***
+     * action to return to the parent frame
+     * @return al - the action
+     */
+    public ActionListener backAction(ArrayList<Item> shoppingCart, CustomerHomePage home) {
+        ActionListener al;
+        al = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //code here
+                dispose();
+                CustomerHomePage customerHomePage = new CustomerHomePage(home.itemsArray);
+                customerHomePage.setCart(shoppingCart);
+                System.out.println("Cart after setCart: " + customerHomePage.tempCart);
+                //remember the cart information
+                //customerHomePage.setPriceShoppingCartPanel(shoppingCart);
+                //customerHomePage.repaint();
+                customerHomePage.setSize(500,500);
+                customerHomePage.setVisible(true);
+                customerHomePage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            }
+            
+        };
+        return al;
+    }
+    
+    /***
+     * action to flow to the checkout page
+     * @return al - the action
+     */
+        public ActionListener checkOutAction() {
+        ActionListener al;
+        al = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //code here
+            }
+            
+        };
+        return al;
     }
     
 }
