@@ -135,7 +135,6 @@ public class Checkout extends JFrame{
         return al;
     }
 
-  
     //testing purposes
     public static void main(String args[]) {
         Checkout frame = new Checkout();
