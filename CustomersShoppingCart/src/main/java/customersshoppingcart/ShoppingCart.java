@@ -14,6 +14,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import javax.swing.*;
+import Panels.Checkout;
 
 /**
  * This class is for the shopping cart object of the project. This is where
@@ -55,6 +56,7 @@ public class ShoppingCart extends JFrame{
         
         //add button action listeners
         backButton.addActionListener(backAction(shoppingCart, home));
+        checkOutButton.addActionListener(checkOutAction());
         
         //load the hashmap with shoppingCart content
         for(int i = 0; i < shoppingCart.size(); i++) {
@@ -140,6 +142,10 @@ public class ShoppingCart extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //code here
+                Checkout Checkout = new Checkout();
+                Checkout.setSize(500,500);
+                Checkout.setVisible(true);
+                Checkout.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             }
             
         };
