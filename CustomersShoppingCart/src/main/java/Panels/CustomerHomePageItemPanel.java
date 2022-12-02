@@ -5,7 +5,9 @@
 package Panels;
 
 import HomePages.CustomerHomePage;
+import ItemManipulation.AddItemFrame;
 import customersshoppingcart.*;
+import details.DetailPage;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -28,7 +30,8 @@ public class CustomerHomePageItemPanel extends JPanel{
     private JLabel imageLabel = new JLabel();
     public JButton addProductButton = new JButton("+");
     //TODO: change "..." to an image of a magnifying glass
-    private JButton detailsButton = new JButton("...");
+    private JButton detailsButton = new JButton("Details");
+    private Item panelitem;
     private ImageIcon ii;
     
     /***
@@ -39,6 +42,7 @@ public class CustomerHomePageItemPanel extends JPanel{
      */
     public CustomerHomePageItemPanel(Item item, ArrayList<Item> tempCart, PriceShoppingCartPanel pricePanel,
             CustomerHomePage home) {
+        this.panelitem = item;
         this.productName.setText(item.getName());
         String priceString = Double.toString(item.getPrice());
         this.productPrice.setText(priceString);
@@ -118,7 +122,7 @@ public class CustomerHomePageItemPanel extends JPanel{
         al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //insert code here
+                DetailPage frame = new DetailPage(panelitem);
             }
         };
         return al;
@@ -135,7 +139,7 @@ public class CustomerHomePageItemPanel extends JPanel{
         return al;
     }
     
-    public static BufferedImage scaleImage(int w, int h, BufferedImage img) throws Exception {
+    private static BufferedImage scaleImage(int w, int h, BufferedImage img) throws Exception {
         BufferedImage bi;
         bi = new BufferedImage(w, h, BufferedImage.TRANSLUCENT);
         Graphics2D g2d = (Graphics2D) bi.createGraphics();

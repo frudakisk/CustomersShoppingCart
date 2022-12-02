@@ -22,7 +22,7 @@ public class CustomerHomePage extends JFrame{
     //the array that will hold all items in customers shopping cart
     protected ArrayList<Item> tempCart = new ArrayList<>();
     //setup components for North
-    private JLabel welcomeLabel = new JLabel("Welcome, username!");
+    private JLabel welcomeLabel = new JLabel("Welcome");
     private JLabel titleLabel = new JLabel("Customer Shopping");
     private PriceShoppingCartPanel pricePanel = new PriceShoppingCartPanel(tempCart);
     private JPanel northPanel = new JPanel();
