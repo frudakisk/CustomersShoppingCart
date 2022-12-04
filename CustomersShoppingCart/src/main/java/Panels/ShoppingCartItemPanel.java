@@ -33,6 +33,7 @@ public class ShoppingCartItemPanel extends JPanel{
      * @param shoppingCart
      * @param item
      * @param cartQuantity
+     * @param home
      */
     public ShoppingCartItemPanel(ArrayList<Item> shoppingCart, Item item,
             HashMap<String,Integer> cartQuantity, ShoppingCart home) {
@@ -55,45 +56,49 @@ public class ShoppingCartItemPanel extends JPanel{
         add(decrementButton);
         
         //add action listeners to buttons
-        incrementButton.addActionListener(incrementCartItem(shoppingCart, item, home));
-        decrementButton.addActionListener(decrementCartItem());
+        incrementButton.addActionListener(incrementCartItem(shoppingCart, item, cartQuantity, home));
+        decrementButton.addActionListener(decrementCartItem(shoppingCart, item, cartQuantity, home));
         
         
         
     }
     
     /***
-     * ActionListener to increment the value of a certain item by 1
+     * ActionListener to add 1 item to the shopping cart. This updates the shopping cart
+     * array, the cartQuantity HashMap, and the priceLabel on the home screen as well as
+     * the current screen
+     * @param shoppingCart
+     * @param item
+     * @param cartQuantity
+     * @param home
      * @return al - the action listener action
      */
-    public ActionListener incrementCartItem(ArrayList<Item> shoppingCart, Item item, ShoppingCart home) {
+    public ActionListener incrementCartItem(ArrayList<Item> shoppingCart, Item item, 
+            HashMap<String, Integer> cartQuantity, ShoppingCart home) {
         ActionListener al;
         al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //add same item
-                //turn quantity to an integer & store in a var
-                //add one to that integer
-                //turn back to string
-                //set the quantity label as the new sum
-                //repaint the quantity label
-                
+                //store quantity, not shopping cart quantity
                 String quantityString = quantity.getText();
                 //check the max quantity in store
                 if(!quantityString.equals(itemArray.get(4))) {
-                    int quantityInt = Integer.parseInt(quantityString);
-                    quantityInt += 1;
-                    quantityString = Integer.toString(quantityInt);
+                    
+                    //incremet the item quantity by one each time we click this button
+                    cartQuantity.replace(item.getName(), cartQuantity.get(item.getName()) + 1);
+                    System.out.println("cartQuantity after incrementCartItem button click: " + cartQuantity);
+
+                    //make string synchronous with cartQuantity value
+                    quantityString = Integer.toString(cartQuantity.get(item.getName()));
                     quantity.setText(quantityString);
-                    //current information is not carried on to shopping cart
                     //make sure these changes are reflected in the shopping cart
                     shoppingCart.add(item);
-                    System.out.println("Current Quantity: " + quantity.getText());
                     
+                    //printing out shoppingCart to see new results
                     for(int i = 0; i < shoppingCart.size(); i++) {
                         System.out.println(shoppingCart.get(i));
                     }
-                    //System.out.println("Shopping cart after incrementing:" + shoppingCart);
+                    
                     //update the ShoppingCartSouthPanel priceLabel
                     home.updatePrice();
                     home.repaintPriceValue();;
@@ -105,7 +110,18 @@ public class ShoppingCartItemPanel extends JPanel{
         return al;
     }
     
-    public ActionListener decrementCartItem() {
+    /***
+     * Action listener that removes item from the cart, updates the shopping cart,
+     * updates the cartQuantity HashMap, and updates the current priceLabel on 
+     * both the home and current screen
+     * @param shoppingCart
+     * @param item
+     * @param cartQuantity
+     * @param home
+     * @return al - Action of the button
+     */
+    public ActionListener decrementCartItem(ArrayList<Item> shoppingCart, Item item, 
+            HashMap<String, Integer> cartQuantity, ShoppingCart home) {
         ActionListener al;
         al = new ActionListener() {
             @Override

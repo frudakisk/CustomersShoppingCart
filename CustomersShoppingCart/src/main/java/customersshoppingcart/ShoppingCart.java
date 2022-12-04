@@ -69,7 +69,7 @@ public class ShoppingCart extends JFrame{
         backButton.addActionListener(backAction(shoppingCart, home));
         checkOutButton.addActionListener(checkOutAction());
         
-        //load the hashmap with shoppingCart content
+        //load the hashmap with shoppingCart content everytime we load this page
         for(int i = 0; i < shoppingCart.size(); i++) {
             if(!cartQuantity.containsKey(shoppingCart.get(i).getName())) {
                 cartQuantity.put(shoppingCart.get(i).getName(), 1);
@@ -80,47 +80,18 @@ public class ShoppingCart extends JFrame{
             }
         }
             
-        //setup data for the center panel
-        //this is just getting an item in the shopping cart
-        //and turning it int a String arraylist w no repeating items
-        //we also make one new attributes - total - which is price*quantity in cart
-//        Set<ArrayList<String>> data = new HashSet<>();
-//        for(int i = 0; i < shoppingCart.size(); i++) {
-//            ArrayList<String> temp = new ArrayList<>();
-//            
-//            Item product = shoppingCart.get(i);
-//            double total = product.getPrice() * cartQuantity.get(product.getName());
-//            String totalString = Double.toString(total);
-//            int quantity = cartQuantity.get(product.getName());
-//            String quantityString = Integer.toString(quantity);
-//            int storeMaxQuantity = product.getQuantity();
-//            String storeMaxQuantityString = Integer.toString(storeMaxQuantity);
-//            temp.add(product.getName());
-//            temp.add(totalString);
-//            temp.add(quantityString);
-//            temp.add(storeMaxQuantityString);
-//            
-//            //add to set - no repeats
-//            data.add(temp);
-//        }
-        
-        
-        //System.out.println("Hash Map before going to SCIP: " + cartQuantity);
+        //using a set to create unique list of shopping cart items of type Item
+        //each item should show once in the shopping cart screen
+        //and have an associated quantity with them
         Set<Item> itemData = new HashSet<>();
         for(int i = 0; i < shoppingCart.size(); i++) {
             itemData.add(shoppingCart.get(i));
         }
-        
-        System.out.println("This is the item data: " + itemData);
-        //iterate through the set!!!!!
-        System.out.println("This is the item in itemData: " + itemData);
-        
-//        //loading up the center panel the right way
-//        centerPanel.setLayout(new GridLayout(cartQuantity.size(),1));
-//        for(int i = 0; i < itemData.size(); i++) {
-//           ShoppingCartItemPanel itemPanel = new ShoppingCartItemPanel(shoppingCart, itemData[i], cartQuantity);
-//            centerPanel.add(itemPanel);
-//        }
+
+        //loading up the center panel 
+        //provides the shallow copy of shoppingCart, current Item from set,
+        //shallow copy of the HashMap, and this page so that we can update south
+        //panel priceLabel
         centerPanel.setLayout(new GridLayout(cartQuantity.size(), 1));
         Iterator value = itemData.iterator();
         while(value.hasNext()) {
