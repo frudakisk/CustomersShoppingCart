@@ -5,6 +5,7 @@
 package customersshoppingcart;
 
 import java.io.*;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 /**
@@ -102,6 +103,24 @@ public class Item implements Serializable{
     @Override
     public String toString() {
         return itemId + " | " + name + " | " + price + " | " + quantity;
+    }
+    
+    public ArrayList<String> toArrayList(){
+        ArrayList<String> itemArray = new ArrayList<>();
+        //convert all attributes to string
+        String itemIdString = Integer.toString(itemId);
+        String priceString = Double.toString(price);
+        String quantityString = Integer.toString(quantity);
+        String quantitySoldString = Integer.toString(quantitySold);
+        //add to arraylist
+        itemArray.add(itemIdString);
+        itemArray.add(name);
+        itemArray.add(description);
+        itemArray.add(priceString);
+        itemArray.add(quantityString);
+        itemArray.add(quantitySoldString);
+        
+        return itemArray;
     }
     
     
