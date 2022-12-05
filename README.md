@@ -1,11 +1,7 @@
-# CustomersShoppingCart
-This is our COP 4331 Project where the application goal is to imitate an online shopping experience.
-
 # Customer’s Shopping Cart
 ## Group Members
 - Kyle Frudakis
 - Nicholas Giacobbe
-- Evel Honore
 - Karl Hezel
 
 # Glossary
@@ -16,7 +12,7 @@ This is our COP 4331 Project where the application goal is to imitate an online 
 
  
 # Project Overview
-For this project, we will be developing a shopping cart application. When the user opens the application, they will be presented with a login window. Depending on if they have an account or not, they will either log in or sign up. Once an account is created, depending on what kind of account they have (a customer or the seller), the application performs different functions. Customers will be able to purchase items from the seller. Sellers will be able to manage their inventory.
+This is our COP 4331 Project where the application goal is to imitate an online shopping experience. For this project, we will be developing a shopping cart application. When the user opens the application, they will be presented with a login window. Depending on if they have an account or not, they will either log in or sign up. Once an account is created, depending on what kind of account they have (a customer or the seller), the application performs different functions. Customers will be able to purchase items from the seller. Sellers will be able to manage their inventory.
 
  
 # Minimal Functional Specification
@@ -188,9 +184,3 @@ This online free software will allow us to design our frames without adding any 
 
 Java
 This project will be run by Java and its libraries. As an object Oriented environment, this language is best suited for what we are going to be implementing.
-Libraries
-
-The Following are libraries we will be importing into our application to implement our ideas. This project will be coded in Java so all libraries will be associated with Java
-
-Swing
-This library will be imported into our application because it gives us access to a GUI widget toolkit for Java that provides us with frames, layouts, labels, etc.
