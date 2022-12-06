@@ -33,11 +33,11 @@ public class SellerHomePage extends JFrame{
         super("Admin Home Page");
         
         //Setting up north panel
-        northPanel.setLayout(new GridLayout(1,2));
-        northPanelButtons.setLayout(new GridLayout(1,2));
+        northPanel.setLayout(new GridLayout(1,1));
+        northPanelButtons.setLayout(new GridLayout(1,1));
         northPanel.add(welcome);
         northPanelButtons.add(addItem);
-        northPanelButtons.add(deleteItem);
+        //northPanelButtons.add(deleteItem);
         northPanel.add(northPanelButtons);
         
         //Setting up center panel
@@ -45,7 +45,7 @@ public class SellerHomePage extends JFrame{
         //ArrayList iterator
         centerPanel.setLayout(new GridLayout(inventory.size(), 1));
         for(int i = 0; i < inventory.size(); i++) {
-            JPanel cell = new AdminHomePageItemPanel(inventory.get(i));
+            JPanel cell = new AdminHomePageItemPanel(inventory.get(i), this);
             centerPanel.add(cell);
         }
         //JPanel cell = new AdminHomePageItemPanel();

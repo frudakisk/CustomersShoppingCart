@@ -4,8 +4,12 @@
  */
 package Panels;
 
+import HomePages.SellerHomePage;
+import ItemManipulation.EditItemFrame;
 import customersshoppingcart.Item;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
@@ -22,10 +26,13 @@ public class AdminHomePageItemPanel extends JPanel{
     private JButton editItem = new JButton("Edit");
     private JPanel leftPanel = new JPanel();
     private JPanel itemDetailsPanel = new JPanel();
+    private Item storeditem;
+    private SellerHomePage storedframe;
     
     
-    
-    public AdminHomePageItemPanel(Item item) {
+    public AdminHomePageItemPanel(Item item, SellerHomePage frame) {
+        this.storeditem = item;
+        this.storedframe = frame;
         //set components with actual data
         name.setText(item.getName());
         String priceString = Double.toString(item.getPrice());
@@ -39,7 +46,7 @@ public class AdminHomePageItemPanel extends JPanel{
         itemDetailsPanel.add(name);
         itemDetailsPanel.add(price);
         itemDetailsPanel.add(quantity);
-        
+        editItem.addActionListener(goToEditFrame());
         //setting up the left panel
         leftPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -68,5 +75,20 @@ public class AdminHomePageItemPanel extends JPanel{
         this.add(leftPanel);
         this.add(editItem);
         
+    }
+
+    private ActionListener goToEditFrame() {
+         ActionListener al;
+        al = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //open the add item frame
+                System.out.println("Add Item button clicked!");
+                EditItemFrame editframe = new EditItemFrame(storeditem, storedframe);
+                
+            }
+
+        };
+        return al;
     }
 }
