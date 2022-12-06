@@ -30,10 +30,10 @@ public class ShoppingCartItemPanel extends JPanel{
     
     /***
      * Constructor for each item in the shopping cart
-     * @param shoppingCart
-     * @param item
-     * @param cartQuantity
-     * @param home
+     * @param shoppingCart shopping cart from the customer
+     * @param item item that the panel will be previewing in the shopping cart
+     * @param cartQuantity key:value pair for quantity of an item in the cart
+     * @param home - the parent JFrame 
      */
     public ShoppingCartItemPanel(ArrayList<Item> shoppingCart, Item item,
             HashMap<String,Integer> cartQuantity, ShoppingCart home) {
@@ -67,10 +67,10 @@ public class ShoppingCartItemPanel extends JPanel{
      * ActionListener to add 1 item to the shopping cart. This updates the shopping cart
      * array, the cartQuantity HashMap, and the priceLabel on the home screen as well as
      * the current screen
-     * @param shoppingCart
-     * @param item
-     * @param cartQuantity
-     * @param home
+     * @param shoppingCart the customer shopping cart 
+     * @param item the item to be added to the shopping cart
+     * @param cartQuantity key:value that holds # of items in shopping cart
+     * @param home ShoppingCart is the parent frame and is  needed to refresh the page
      * @return al - the action listener action
      */
     public ActionListener incrementCartItem(ArrayList<Item> shoppingCart, Item item, 
@@ -117,7 +117,8 @@ public class ShoppingCartItemPanel extends JPanel{
      * @param shoppingCart holds the items in customer shopping cart
      * @param item the item that we want to decrement in cartQuantity and remove from shoppingCart
      * @param cartQuantity holds the quantity of each item in the shoppingCart
-     * @param home customerHomePage - to refresh this page with new information
+     * @param home ShoppingCart - to refresh this page with new information
+     * @param currentPanel this JPanel. Used to remove the panel once quantity = 0
      * @return al - Action of the button
      */
     public ActionListener decrementCartItem(ArrayList<Item> shoppingCart, Item item, 
@@ -152,7 +153,7 @@ public class ShoppingCartItemPanel extends JPanel{
                         //dismiss this panel
                         //repaint the shopping cart view with new ArrayList shoppingCart
                         currentPanel.removeAll();
-                        home.repaint();
+                        home.repaint();                        
                     }
                     //printing out shoppingCart to see new results
                     for(int i = 0; i < shoppingCart.size(); i++) {

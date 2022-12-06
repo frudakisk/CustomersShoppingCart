@@ -20,15 +20,6 @@ public class CustomersShoppingCart {
     //Will contain all items read from file
     public ArrayList<Item> itemArray = new ArrayList<>();
     
-    //TODO: replace with file output stream
-    //each Item will read data from the file and create an new instance
-    //then store it into an array
-    
-//    for(int i = 0; i < fileLineLength; i++) {
-//        Item x = new Item(...);
-//        tempArray.add(x);
-//    }
-    
     /***
      * Constructor for CustomersShoppingCart page
      */
@@ -37,6 +28,10 @@ public class CustomersShoppingCart {
         itemArray = readFile();
     }
     
+    /***
+     * Reads items.txt file
+     * @return An ArrayList(Item) that will contain all objects from the items.txt file
+     */
     private ArrayList<Item> readFile() {
         ArrayList<Item> itemTemp = new ArrayList<>();
         try

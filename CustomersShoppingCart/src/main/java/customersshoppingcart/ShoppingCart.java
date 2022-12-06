@@ -101,7 +101,6 @@ public class ShoppingCart extends JFrame{
         }
 
         //loading up the south panel
-        //totalPriceLabel.setText("Total: $0.00");
         southPanel.add(totalPriceLabel);
         
         //testing purposes only - wil delete later
@@ -117,6 +116,10 @@ public class ShoppingCart extends JFrame{
     
     /***
      * action to return to the parent frame
+     * @param shoppingCart the information about the shopping cart needs to be
+     * returned to the parent JFrame
+     * @param home the parent JFrame that needs to be updated with the new information
+     * after this action is performed
      * @return al - the action
      */
     public ActionListener backAction(ArrayList<Item> shoppingCart, CustomerHomePage home) {
@@ -143,6 +146,7 @@ public class ShoppingCart extends JFrame{
     
     /***
      * action to flow to the checkout page
+     * This will need some parameters for sure later on
      * @return al - the action
      */
         public ActionListener checkOutAction() {
@@ -173,6 +177,9 @@ public class ShoppingCart extends JFrame{
         System.out.println("Total Price is: " + priceSum);
     }
     
+    /***
+     * repaints the totalPriceLabel value each time it is called
+     */
     public void repaintPriceValue(){
         String priceSumString = Double.toString(priceSum);
         totalPriceLabel.setText("$" + priceSumString);
