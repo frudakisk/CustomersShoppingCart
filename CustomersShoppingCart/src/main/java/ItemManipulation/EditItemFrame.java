@@ -118,7 +118,7 @@ public class EditItemFrame extends JFrame {
                     itemArray = readFile();
                     itemArray.set(itemtochange.getItemId(),newItem);
                     addItemToFile(itemArray);
-                };
+                }
                 //Close this add window after success
                 dispose();
             }
@@ -208,6 +208,7 @@ public class EditItemFrame extends JFrame {
                 }
                 itemArray.remove(itemtochange.getItemId());
                 addItemToFile(itemArray);
+                dispose();
             }
             
         };

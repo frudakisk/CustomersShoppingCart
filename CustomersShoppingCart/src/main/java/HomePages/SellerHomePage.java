@@ -45,7 +45,7 @@ public class SellerHomePage extends JFrame{
         //ArrayList iterator
         centerPanel.setLayout(new GridLayout(inventory.size(), 1));
         for(int i = 0; i < inventory.size(); i++) {
-            JPanel cell = new AdminHomePageItemPanel(inventory.get(i), this);
+            JPanel cell = new AdminHomePageItemPanel(inventory.get(i));
             centerPanel.add(cell);
         }
         //JPanel cell = new AdminHomePageItemPanel();
