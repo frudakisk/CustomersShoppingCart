@@ -57,7 +57,7 @@ public class ShoppingCartItemPanel extends JPanel{
         
         //add action listeners to buttons
         incrementButton.addActionListener(incrementCartItem(shoppingCart, item, cartQuantity, home));
-        decrementButton.addActionListener(decrementCartItem(shoppingCart, item, cartQuantity, home));
+        decrementButton.addActionListener(decrementCartItem(shoppingCart, item, cartQuantity, home, this));
         
         
         
@@ -114,28 +114,55 @@ public class ShoppingCartItemPanel extends JPanel{
      * Action listener that removes item from the cart, updates the shopping cart,
      * updates the cartQuantity HashMap, and updates the current priceLabel on 
      * both the home and current screen
-     * @param shoppingCart
-     * @param item
-     * @param cartQuantity
-     * @param home
+     * @param shoppingCart holds the items in customer shopping cart
+     * @param item the item that we want to decrement in cartQuantity and remove from shoppingCart
+     * @param cartQuantity holds the quantity of each item in the shoppingCart
+     * @param home customerHomePage - to refresh this page with new information
      * @return al - Action of the button
      */
     public ActionListener decrementCartItem(ArrayList<Item> shoppingCart, Item item, 
-            HashMap<String, Integer> cartQuantity, ShoppingCart home) {
+            HashMap<String, Integer> cartQuantity, ShoppingCart home, ShoppingCartItemPanel currentPanel) {
         ActionListener al;
         al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //similar to incrementCartItem but just subtract 1
+                //get store quantity, not quantity in shoppingCart
                 String quantityString = quantity.getText();
+                //make sure we do not go below 0
                 if(!quantityString.equals("0")) {
-                    int quantityInt = Integer.parseInt(quantityString);
-                    quantityInt -= 1;
-                    quantityString = Integer.toString(quantityInt);
+                    //decrement the quantity by one each time we click this button
+                    cartQuantity.replace(item.getName(), cartQuantity.get(item.getName()) - 1);
+                    System.out.println("cartQuantity after incrementCartItem button click: " + cartQuantity);
+                    
+                    //make string synchronous with cartQuantity
+                    quantityString = Integer.toString(cartQuantity.get(item.getName()));
                     quantity.setText(quantityString);
-                    //current information is not carried on to shopping cart
-                    //make sure these changes are reflected in the shopping cart
-                    System.out.println("Current Quantity: " + quantity.getText());
+                    
+                    //make sure these changes are reflected in the shoppingCart
+                    shoppingCart.remove(item);
+                    //make sure these changes are reflected in the cartQuantity
+                    //no item should ever = 0, just take it out of the HashMap
+                    //and refresh shopping cart to not show items with quantity = 0
+                    
+                    //Check if the quantity is 0, if so, refresh the frame with updated shoppingCart
+                    if(quantity.getText().equals("0")) {
+                        System.out.println("Quantity is 0!!!");
+                        cartQuantity.remove(item.getName());
+                        //dismiss this panel
+                        //repaint the shopping cart view with new ArrayList shoppingCart
+                        currentPanel.removeAll();
+                        home.repaint();
+                    }
+                    //printing out shoppingCart to see new results
+                    for(int i = 0; i < shoppingCart.size(); i++) {
+                        System.out.println(shoppingCart.get(i));
+                    }
+                    //show the content of cartQuantity
+                    System.out.println(cartQuantity);
+                    //update the ShoppingCartSouthPanel priceLabel
+                    home.updatePrice();
+                    home.repaintPriceValue();;
                 }
                 
             }
