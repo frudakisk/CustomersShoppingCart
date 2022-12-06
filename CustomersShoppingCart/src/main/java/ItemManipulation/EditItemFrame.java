@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ItemManipulation;
-
+import HomePages.SellerHomePage;
 import customersshoppingcart.Item;
 import customersshoppingcart.Users;
 import java.awt.*;
@@ -11,12 +11,11 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.ArrayList;
 import javax.swing.*;
-
 /**
- * This class represents the JFrame form for adding a new item into the store.
+ *
  * @author fruda
  */
-public class AddItemFrame extends JFrame{
+public class EditItemFrame extends JFrame {
     //labels
     private JLabel title = new JLabel("Add Item Details");
     private JLabel nameLabel = new JLabel("Name: ");
@@ -26,31 +25,35 @@ public class AddItemFrame extends JFrame{
     //TODO: add picture too
     
     //buttons
+    private JButton deleteButton = new JButton("Delete Item");
     private JButton saveButton = new JButton("Save");
     private JButton addImageButton = new JButton("Select Image");
     
     //textFields
-    private JTextField nameField = new JTextField();
-    private JTextField priceField = new JTextField();
-    private JTextField quantityField = new JTextField();
-    private JTextArea descriptionField = new JTextArea();
+    private JTextField nameField;
+    private JTextField priceField;
+    private JTextField quantityField;
+    private JTextArea descriptionField;
     
     //panels
     private JPanel northPanel = new JPanel();
     private JPanel centerPanel = new JPanel();
     private JPanel southPanel = new JPanel();
+    private Item itemtochange;
     
     //stuff for file reading
     ArrayList<Item> itemArray = new ArrayList<>();
     File f = new File("items.txt");
     String imageLocation = null;
-    private int filelength = 0;
-    
-    public AddItemFrame() {
-        super("Add Item");
+    public EditItemFrame(Item passeditem, SellerHomePage frame ){
+        super("Edit Item");
+        this.itemtochange = passeditem;
+        nameField = new JTextField(itemtochange.getName());
+        priceField = new JTextField(String.valueOf(itemtochange.getPrice()));
+        quantityField = new JTextField(String.valueOf(itemtochange.getQuantity()));
+        descriptionField = new JTextArea(itemtochange.description());
         
         this.setLayout(new BorderLayout());
-        
         //set up border panels
         //North panel
         northPanel.add(title);
@@ -65,25 +68,31 @@ public class AddItemFrame extends JFrame{
         centerPanel.add(descriptionLabel);
         centerPanel.add(descriptionField);
         //south panel
-        southPanel.setLayout(new GridLayout(1,2));
+        southPanel.setLayout(new GridLayout(1,3));
+        southPanel.add(deleteButton);
         southPanel.add(addImageButton);
         southPanel.add(saveButton);
         
         //set up button actions
         saveButton.addActionListener(saveButtonAction());
         addImageButton.addActionListener(imageAction());
+        deleteButton.addActionListener(deleteAction());
         //add panels to borderlayout
         this.getContentPane().setLayout(new BorderLayout());
         this.getContentPane().add("North", northPanel);
         this.getContentPane().add("Center", centerPanel);
         this.getContentPane().add("South", southPanel);
-        
-        
         this.setSize(500,500);
         this.setVisible(true);
         //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        
+        
+        
+        
+        
+        
     }
-    
     private ActionListener saveButtonAction() {
         ActionListener al;
         al = new ActionListener() {
@@ -96,22 +105,20 @@ public class AddItemFrame extends JFrame{
                 int quantity = Integer.parseInt(quantityField.getText());
                 String description = descriptionField.getText();
                 //TODO: logic to find itemId based on last id used in file
-                
+                Item newItem = new Item(itemtochange.getItemId(), name, description, price, quantity, imageLocation);
                 //TODO: add string representation of item to its file
-                //System.out.println(newItem);
+                System.out.println(newItem);
                 //read the file, save its content to array list, add new content
                 //save back to file
                 //check if file is empty
                 if(f.length() == 0) {
-                    Item newItem = new Item(0, name, description, price, quantity, imageLocation);
                     itemArray.add(newItem);
                     addItemToFile(itemArray);
                 } else {
                     itemArray = readFile();
-                    Item newItem = new Item(filelength, name, description, price, quantity, imageLocation);
-                    itemArray.add(newItem);
+                    itemArray.set(itemtochange.getItemId(),newItem);
                     addItemToFile(itemArray);
-                };
+                }
                 //Close this add window after success
                 dispose();
             }
@@ -139,11 +146,6 @@ public class AddItemFrame extends JFrame{
             ioe.printStackTrace();
         }
     }
-    
-    /***
-     * Reads the items.txt file and returns a list of all its content
-     * @return Item list
-     */
     private ArrayList<Item> readFile() {
         ArrayList<Item> itemTemp = new ArrayList<>();
         try
@@ -152,7 +154,7 @@ public class AddItemFrame extends JFrame{
             ObjectInputStream ois = new ObjectInputStream(fis);
  
             itemTemp = (ArrayList) ois.readObject();
-            filelength = itemTemp.size();
+            
             ois.close();
             fis.close();
             
@@ -171,12 +173,6 @@ public class AddItemFrame extends JFrame{
         }
         return itemTemp;
     }
-    
-    //testing purposes
-    public static void main(String args[]) {
-        AddItemFrame frame = new AddItemFrame();
-    }
-
     private ActionListener imageAction() {
        ActionListener al;
         al = new ActionListener() {
@@ -199,4 +195,26 @@ public class AddItemFrame extends JFrame{
         };
         return al; 
     }
+
+    private ActionListener deleteAction() {
+        ActionListener al;
+        al = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                itemArray = readFile();
+                
+                for (int i = (itemtochange.getItemId() + 1 ); i < itemArray.size(); i++) {
+                    itemArray.get(i).updateId(i-1);
+                }
+                itemArray.remove(itemtochange.getItemId());
+                addItemToFile(itemArray);
+                dispose();
+            }
+            
+        };
+        return al;
+    }
+    
+    
+    
 }
