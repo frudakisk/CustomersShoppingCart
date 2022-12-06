@@ -47,6 +47,7 @@ public class EditItemFrame extends JFrame {
     String imageLocation = null;
     public EditItemFrame(Item passeditem, SellerHomePage frame ){
         super("Edit Item");
+        this.itemtochange = passeditem;
         nameField = new JTextField(itemtochange.getName());
         priceField = new JTextField(String.valueOf(itemtochange.getPrice()));
         quantityField = new JTextField(String.valueOf(itemtochange.getQuantity()));
@@ -201,9 +202,12 @@ public class EditItemFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 itemArray = readFile();
-                for (int i = 0; i < itemArray.size(); i++) {
-                    
+                
+                for (int i = (itemtochange.getItemId() + 1 ); i < itemArray.size(); i++) {
+                    itemArray.get(i).updateId(i-1);
                 }
+                itemArray.remove(itemtochange.getItemId());
+                addItemToFile(itemArray);
             }
             
         };

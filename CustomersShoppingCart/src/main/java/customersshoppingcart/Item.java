@@ -31,7 +31,9 @@ public class Item implements Serializable{
         this.quantity = quantity;
         this.imageFileLocation = image;
     }
-    
+    public void updateId(int id){
+        this.itemId = id;
+    }
     /***
      * Sets a new price for an item
      * @param newPrice the new price of the item
