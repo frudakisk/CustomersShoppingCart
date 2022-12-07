@@ -5,12 +5,14 @@
 package ItemManipulation;
 
 import customersshoppingcart.Item;
+import customersshoppingcart.CustomersShoppingCart;
 import customersshoppingcart.Users;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.util.ArrayList;
 import javax.swing.*;
+import HomePages.*;
 
 /**
  * This class represents the JFrame form for adding a new item into the store.
@@ -114,6 +116,11 @@ public class AddItemFrame extends JFrame{
                 };
                 //Close this add window after success
                 dispose();
+                CustomersShoppingCart customer = new CustomersShoppingCart();
+                SellerHomePage sellerHomePage = new SellerHomePage(customer.itemArray);
+                sellerHomePage.setSize(500,500);
+                sellerHomePage.setVisible(true);
+                sellerHomePage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             }
             
         };

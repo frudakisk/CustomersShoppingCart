@@ -73,7 +73,11 @@ public class SellerHomePage extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 //open the add item frame
                 System.out.println("Add Item button clicked!");
+                dispose();
                 AddItemFrame frame = new AddItemFrame();
+                frame.setSize(500,500);
+                frame.setVisible(true);
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 
             }
 
