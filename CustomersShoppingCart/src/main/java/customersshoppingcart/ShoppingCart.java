@@ -67,7 +67,7 @@ public class ShoppingCart extends JFrame{
         
         //add button action listeners
         backButton.addActionListener(backAction(shoppingCart, home));
-        checkOutButton.addActionListener(checkOutAction());
+        checkOutButton.addActionListener(checkOutAction(cart, home));
         
         //load the hashmap with shoppingCart content everytime we load this page
         for(int i = 0; i < shoppingCart.size(); i++) {
@@ -149,13 +149,14 @@ public class ShoppingCart extends JFrame{
      * This will need some parameters for sure later on
      * @return al - the action
      */
-        public ActionListener checkOutAction() {
+        public ActionListener checkOutAction(ArrayList<Item> tempCart, CustomerHomePage home) {
         ActionListener al;
         al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //code here
-                Checkout Checkout = new Checkout();
+                dispose();
+                Checkout Checkout = new Checkout(tempCart, home);
                 Checkout.setSize(500,500);
                 Checkout.setVisible(true);
                 Checkout.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

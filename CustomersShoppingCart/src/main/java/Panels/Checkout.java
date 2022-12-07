@@ -4,15 +4,21 @@
  */
 package Panels;
 
+import HomePages.CustomerHomePage;
+import customersshoppingcart.Item;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import customersshoppingcart.ShoppingCart;
+import java.util.ArrayList;
 
 /**
  * This class represents the JFrame form for the checkout process and payment.
  * @author Karl Hezel
  */
 public class Checkout extends JFrame{
+    
+    
     //labels
     private JLabel title = new JLabel("Pay Now");
     private JLabel paymetLabel = new JLabel("Payment Method: ");
@@ -62,9 +68,10 @@ public class Checkout extends JFrame{
 
     
     
-    public Checkout() {
-        super("Checkout");
+    public Checkout(ArrayList<Item> tempCart, CustomerHomePage home) {
         
+        super("Checkout");
+       
         this.setLayout(new BorderLayout());
         
         //set up border panels
@@ -102,7 +109,7 @@ public class Checkout extends JFrame{
         
         //set up button actions
         continueButton.addActionListener(continueButtonAction());
-        cancelButton.addActionListener(cancelButtonAction());
+        cancelButton.addActionListener(cancelButtonAction(tempCart, home));
         
         //add panels to borderlayout
         this.getContentPane().setLayout(new BorderLayout());
@@ -126,11 +133,17 @@ public class Checkout extends JFrame{
         return al;
     }
 
-    private ActionListener cancelButtonAction() {
+    private ActionListener cancelButtonAction(ArrayList<Item> tempCart, CustomerHomePage home) {
         ActionListener al;
         al = new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e){
-                JOptionPane.showMessageDialog(null, "Going back to cutomer home page");
+                dispose(); //remove current frame
+                ShoppingCart cart = new ShoppingCart(tempCart, home); //show new frame
+                cart.setSize(500,500);
+                cart.setVisible(true);
+                cart.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
             }
         };
         return al;
@@ -138,7 +151,7 @@ public class Checkout extends JFrame{
 
   
     //testing purposes
-    public static void main(String args[]) {
-        Checkout frame = new Checkout();
-    }
+    //public static void main(String args[]) {
+    //    Checkout frame = new Checkout();
+    //}
 }
