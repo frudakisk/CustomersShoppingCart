@@ -4,6 +4,7 @@
  */
 package ItemManipulation;
 import HomePages.SellerHomePage;
+import customersshoppingcart.CustomersShoppingCart;
 import customersshoppingcart.Item;
 import customersshoppingcart.Users;
 import java.awt.*;
@@ -52,7 +53,8 @@ public class EditItemFrame extends JFrame {
         priceField = new JTextField(String.valueOf(itemtochange.getPrice()));
         quantityField = new JTextField(String.valueOf(itemtochange.getQuantity()));
         descriptionField = new JTextArea(itemtochange.description());
-        
+        descriptionField.setLineWrap(true);
+        imageLocation = itemtochange.getImageFileLocation();
         this.setLayout(new BorderLayout());
         //set up border panels
         //North panel
@@ -121,6 +123,11 @@ public class EditItemFrame extends JFrame {
                 }
                 //Close this add window after success
                 dispose();
+                CustomersShoppingCart customer = new CustomersShoppingCart();
+                SellerHomePage sellerHomePage = new SellerHomePage(customer.itemArray);
+                sellerHomePage.setSize(500,500);
+                sellerHomePage.setVisible(true);
+                sellerHomePage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             }
             
         };

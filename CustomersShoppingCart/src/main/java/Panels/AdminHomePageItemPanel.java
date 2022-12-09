@@ -24,11 +24,7 @@ public class AdminHomePageItemPanel extends JPanel{
     private JLabel picture = new JLabel();
     private JLabel price = new JLabel("$0.00");
     private JLabel quantity = new JLabel("Quantity: 0");
-    private JButton upQuantityButton = new JButton("+");
-    private JButton downQuantityButton = new JButton("-");
     private JButton editItem = new JButton("Edit");
-    private JPanel leftPanel = new JPanel();
-    private JPanel itemDetailsPanel = new JPanel();
     private Item storeditem;
     private ImageIcon ii;
     private SellerHomePage storedframe;
@@ -63,15 +59,16 @@ public class AdminHomePageItemPanel extends JPanel{
         
         
         //Setting up the item details panel
-        itemDetailsPanel.setLayout(new GridLayout(1,5));
-        itemDetailsPanel.add(picture);
-        itemDetailsPanel.add(name);
-        itemDetailsPanel.add(price);
-        itemDetailsPanel.add(quantity);
+        setLayout(new GridLayout(1,5));
+        add(picture);
+        add(name);
+        add(price);
+        add(quantity);
+        add(editItem);
         editItem.addActionListener(goToEditFrame());
         //setting up the left panel
-        leftPanel.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
+        //leftPanel.setLayout(new GridBagLayout());
+        /*GridBagConstraints gbc = new GridBagConstraints();
 
         
         gbc.gridx = 0;
@@ -91,11 +88,11 @@ public class AdminHomePageItemPanel extends JPanel{
         gbc.gridwidth = 2;
         leftPanel.add(itemDetailsPanel, gbc);
         
-        
+        */
         //setting up this panel
-        this.setLayout(new GridLayout(1,2));
-        this.add(leftPanel);
-        this.add(editItem);
+        //this.setLayout(new GridLayout(1,2));
+        //this.add(leftPanel);
+        //this.add(editItem);
         
     }
 
@@ -105,9 +102,13 @@ public class AdminHomePageItemPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //open the add item frame
+                final Window parentWindow = SwingUtilities.getWindowAncestor(AdminHomePageItemPanel.this);
+                parentWindow.dispose();
                 System.out.println("Add Item button clicked!");
                 EditItemFrame editframe = new EditItemFrame(storeditem, storedframe);
-                
+                editframe.setSize(500,500);
+                editframe.setVisible(true);
+                editframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             }
 
         };

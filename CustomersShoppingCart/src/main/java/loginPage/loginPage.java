@@ -14,12 +14,14 @@ import javax.swing.*;
  * @author nicholasgiacobbe
  */
 public class loginPage extends JFrame {
-    
-    private loginPanel2 loginPanel = new loginPanel2();
+    private ArrayList<Item> itemArray = new ArrayList<>();
+    private loginPanel2 loginPanel;
     private JPanel northPanel = new JPanel();
     private boolean x = false;
-    public loginPage(){
+    public loginPage(ArrayList<Item> temp){
         super("login");
+        this.itemArray = temp;
+        this.loginPanel = new loginPanel2(itemArray, this);
         northPanel.add(loginPanel);
         this.getContentPane().setLayout(new BorderLayout());
         this.getContentPane().add("North", northPanel);

@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Panels;
+import HomePages.CustomerHomePage;
+import HomePages.SellerHomePage;
 import customersshoppingcart.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -21,17 +23,20 @@ public class loginPanel2 extends JPanel {
     private boolean loginSuccess = false;
     private Users currentUser;
     private ArrayList<Users> userStorage= new ArrayList<>();
-    
+    private ArrayList<Item> itemArray = new ArrayList<>();
     File f = new File("logins.txt");
     public boolean getLoginSuccess(){
         return loginSuccess; 
     }
-    public loginPanel2(){
-        username.setForeground(Color.LIGHT_GRAY);
-        password.setForeground(Color.LIGHT_GRAY);
-        username.addFocusListener(placeholderText("username", username));
-        password.addFocusListener(placeholderText("password", password));
-        login.addActionListener(loginAction());
+    public loginPanel2(ArrayList<Item> temp, JFrame home){
+        this.itemArray = temp;
+        login.addActionListener(loginAction(home));
+    //public loginPanel2(){
+        //username.setForeground(Color.LIGHT_GRAY);
+        //password.setForeground(Color.LIGHT_GRAY);
+        //username.addFocusListener(placeholderText("username", username));
+        //password.addFocusListener(placeholderText("password", password));
+        //login.addActionListener(loginAction());
         register.addActionListener(registerAction());
         setLayout(new GridLayout(2,2));
         add(username);
@@ -43,7 +48,7 @@ public class loginPanel2 extends JPanel {
         return currentUser;
     }
 
-    private ActionListener loginAction() {
+    private ActionListener loginAction(JFrame home) {
         ActionListener all;
         all = new ActionListener(){
             @Override
@@ -54,7 +59,7 @@ public class loginPanel2 extends JPanel {
                 try {
                  
                     userStorage = readFile();
-                    logic(user, pswrd);
+                    logic(user, pswrd, home);
 
                 } catch (Exception ex) {
 
@@ -147,14 +152,36 @@ public class loginPanel2 extends JPanel {
         return userTemp;
     }
    
-    private void logic(String user, String pswrd) {
+    private void logic(String user, String pswrd, JFrame home) {
         for (Users i : userStorage){
             System.out.println(i.name+i.password);
             System.out.println(user+pswrd);
             if(i.verifyId(user, pswrd)){
                JOptionPane.showMessageDialog(null, "Login Successfully!!");
+                    CustomerHomePage customerHomePage = new CustomerHomePage(itemArray);
+                    SellerHomePage sellerHomePage = new SellerHomePage(itemArray);
+                    
                     loginSuccess = true;
                     currentUser = i;
+                    //this window should be the current screen
+                    JFrame window = home;
+                    if (loginSuccess){
+                        window.dispose();
+                        System.out.println("Window should be disposed");
+                        if(currentUser.userStatus){
+                        window = sellerHomePage;
+                        }
+                        else if(!currentUser.userStatus){
+                            window = customerHomePage;
+                        }
+                        window.setSize(500,500);
+                        window.setVisible(true);
+                        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    }
+                    
+                    
+                    
+                    
                     break; 
             }
         }
