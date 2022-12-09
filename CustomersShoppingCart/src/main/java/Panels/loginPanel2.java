@@ -31,6 +31,12 @@ public class loginPanel2 extends JPanel {
     public loginPanel2(ArrayList<Item> temp, JFrame home){
         this.itemArray = temp;
         login.addActionListener(loginAction(home));
+    //public loginPanel2(){
+        //username.setForeground(Color.LIGHT_GRAY);
+        //password.setForeground(Color.LIGHT_GRAY);
+        //username.addFocusListener(placeholderText("username", username));
+        //password.addFocusListener(placeholderText("password", password));
+        //login.addActionListener(loginAction());
         register.addActionListener(registerAction());
         setLayout(new GridLayout(2,2));
         add(username);
@@ -183,5 +189,36 @@ public class loginPanel2 extends JPanel {
             JOptionPane.showMessageDialog(null, "incorrect username/password");
         }
         
+    }
+    
+    /***
+     * FocusListener to make watermark text on the username and password field
+     * @param text placeholder text
+     * @param field the text field to hold a watermark 
+     * @return fl - the focus listener
+     */
+    public FocusListener placeholderText(String text, JTextField field) {
+        FocusListener fl;
+        fl = new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if(field.getForeground() == Color.LIGHT_GRAY){
+                    System.out.println("color is light gray");
+                    field.setForeground(Color.BLACK);
+                    field.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                System.out.println("focusLost: " + field.getText());
+                if(field.getText().equals(text) || field.getText().equals("")) {
+                    field.setForeground(Color.LIGHT_GRAY);
+                    field.setText(text);
+                }
+            }
+            
+        };
+        return fl;
     }
 }

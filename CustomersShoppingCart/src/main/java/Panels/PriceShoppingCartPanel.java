@@ -81,11 +81,16 @@ public class PriceShoppingCartPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Cart Button has been clicked");
-                home.dispose(); //remove current frame
-                ShoppingCart cart = new ShoppingCart(tempCart, home); //show new frame
-                cart.setSize(500,500);
-                cart.setVisible(true);
-                cart.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                if(tempCart.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Add something to your cart!");
+                } else {
+                    home.dispose(); //remove current frame
+                    ShoppingCart cart = new ShoppingCart(tempCart, home); //show new frame
+                    cart.setSize(500,500);
+                    cart.setVisible(true);
+                    cart.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                }
+                
                 
             }
         };
