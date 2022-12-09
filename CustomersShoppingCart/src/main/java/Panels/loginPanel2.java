@@ -28,9 +28,9 @@ public class loginPanel2 extends JPanel {
     public boolean getLoginSuccess(){
         return loginSuccess; 
     }
-    public loginPanel2(ArrayList<Item> temp){
+    public loginPanel2(ArrayList<Item> temp, JFrame home){
         this.itemArray = temp;
-        login.addActionListener(loginAction());
+        login.addActionListener(loginAction(home));
         register.addActionListener(registerAction());
         setLayout(new GridLayout(2,2));
         add(username);
@@ -42,7 +42,7 @@ public class loginPanel2 extends JPanel {
         return currentUser;
     }
 
-    private ActionListener loginAction() {
+    private ActionListener loginAction(JFrame home) {
         ActionListener all;
         all = new ActionListener(){
             @Override
@@ -53,7 +53,7 @@ public class loginPanel2 extends JPanel {
                 try {
                  
                     userStorage = readFile();
-                    logic(user, pswrd);
+                    logic(user, pswrd, home);
 
                 } catch (Exception ex) {
 
@@ -146,7 +146,7 @@ public class loginPanel2 extends JPanel {
         return userTemp;
     }
    
-    private void logic(String user, String pswrd) {
+    private void logic(String user, String pswrd, JFrame home) {
         for (Users i : userStorage){
             System.out.println(i.name+i.password);
             System.out.println(user+pswrd);
@@ -157,9 +157,11 @@ public class loginPanel2 extends JPanel {
                     
                     loginSuccess = true;
                     currentUser = i;
-                    JFrame window = new JFrame();
+                    //this window should be the current screen
+                    JFrame window = home;
                     if (loginSuccess){
                         window.dispose();
+                        System.out.println("Window should be disposed");
                         if(currentUser.userStatus){
                         window = sellerHomePage;
                         }

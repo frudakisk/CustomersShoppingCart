@@ -21,7 +21,7 @@ public class loginPage extends JFrame {
     public loginPage(ArrayList<Item> temp){
         super("login");
         this.itemArray = temp;
-        this.loginPanel = new loginPanel2(itemArray);
+        this.loginPanel = new loginPanel2(itemArray, this);
         northPanel.add(loginPanel);
         this.getContentPane().setLayout(new BorderLayout());
         this.getContentPane().add("North", northPanel);
