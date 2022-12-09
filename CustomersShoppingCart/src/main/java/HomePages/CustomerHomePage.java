@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
+import loginPage.loginPage;
 
 /**
  * The Home page for customer logins. This is where shopping happens
@@ -24,6 +25,7 @@ public class CustomerHomePage extends JFrame{
     //setup components for North
     private JLabel welcomeLabel = new JLabel("Welcome");
     private JLabel titleLabel = new JLabel("Customer Shopping");
+    private JButton logout = new JButton("Logout");
     private PriceShoppingCartPanel pricePanel = new PriceShoppingCartPanel(tempCart, this);
     private JPanel northPanel = new JPanel();
     
@@ -43,11 +45,13 @@ public class CustomerHomePage extends JFrame{
         this.itemsArray = temp;
         
         //setup panel for North
-        northPanel.setLayout(new GridLayout(1,3));
+        northPanel.setLayout(new GridLayout(1,4));
         northPanel.add(welcomeLabel);
         northPanel.add(titleLabel);
         northPanel.add(pricePanel);
+        northPanel.add(logout);
         
+        logout.addActionListener(logoutAction());
         //setup panel for Center
         centerPanel.setLayout(new GridLayout(itemsArray.size(),1));
         
@@ -99,4 +103,21 @@ public class CustomerHomePage extends JFrame{
 //        window.setVisible(true);
 //        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //    }
+
+    private ActionListener logoutAction() {
+        ActionListener al;
+        al = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                loginPage loginPage = new loginPage(itemsArray);
+                JFrame window = loginPage;
+                window.setSize(500,500);
+                window.setVisible(true);
+                window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            }
+            
+        };
+        return al;
+    }
 }

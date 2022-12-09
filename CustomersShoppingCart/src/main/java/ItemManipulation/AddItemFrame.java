@@ -57,6 +57,7 @@ public class AddItemFrame extends JFrame{
         //North panel
         northPanel.add(title);
         //Center Panel
+        descriptionField.setLineWrap(true);
         centerPanel.setLayout(new GridLayout(4,2));
         centerPanel.add(nameLabel);
         centerPanel.add(nameField);

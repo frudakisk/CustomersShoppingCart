@@ -67,15 +67,15 @@ public class CustomersShoppingCart {
      */
     public static void main(String[] args) {
         CustomersShoppingCart customer = new CustomersShoppingCart();
-        CustomerHomePage customerHomePage = new CustomerHomePage(customer.itemArray);
-        SellerHomePage sellerHomePage = new SellerHomePage(customer.itemArray);
-        boolean loginsuc=false;
-        loginPage loginPage = new loginPage();
+        //CustomerHomePage customerHomePage = new CustomerHomePage(customer.itemArray);
+        //SellerHomePage sellerHomePage = new SellerHomePage(customer.itemArray);
+       // boolean loginsuc=false;
+        loginPage loginPage = new loginPage(customer.itemArray);
         JFrame window = loginPage;
         window.setSize(500,500);
         window.setVisible(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        while(!loginsuc){
+        /*while(!loginsuc){
             if (loginPage.getLoginPanel().getLoginSuccess()){
                 window.dispose();
                 if(loginPage.getLoginPanel().getCurrentUser().userStatus){
@@ -89,6 +89,6 @@ public class CustomersShoppingCart {
                 window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 loginsuc = true;
             }
-        }
+        }*/
     }
 }
