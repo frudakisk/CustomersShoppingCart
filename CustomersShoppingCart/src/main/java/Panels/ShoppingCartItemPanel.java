@@ -91,6 +91,11 @@ public class ShoppingCartItemPanel extends JPanel{
                     //make string synchronous with cartQuantity value
                     quantityString = Integer.toString(cartQuantity.get(item.getName()));
                     quantity.setText(quantityString);
+                    //update the total price of the item in the cart
+                    double itemPrice = Double.parseDouble(itemArray.get(3));
+                    double totalPriceDouble = cartQuantity.get(name.getText()) * itemPrice;
+                    String totalPriceString = Double.toString(totalPriceDouble);
+                    totalPrice.setText(totalPriceString);
                     //make sure these changes are reflected in the shopping cart
                     shoppingCart.add(item);
                     
@@ -139,7 +144,11 @@ public class ShoppingCartItemPanel extends JPanel{
                     //make string synchronous with cartQuantity
                     quantityString = Integer.toString(cartQuantity.get(item.getName()));
                     quantity.setText(quantityString);
-                    
+                    //update the total price of the item in the cart
+                    double itemPrice = Double.parseDouble(itemArray.get(3));
+                    double totalPriceDouble = cartQuantity.get(name.getText()) * itemPrice;
+                    String totalPriceString = Double.toString(totalPriceDouble);
+                    totalPrice.setText(totalPriceString);
                     //make sure these changes are reflected in the shoppingCart
                     shoppingCart.remove(item);
                     //make sure these changes are reflected in the cartQuantity
