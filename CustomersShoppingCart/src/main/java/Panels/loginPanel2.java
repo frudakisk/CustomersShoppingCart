@@ -31,12 +31,10 @@ public class loginPanel2 extends JPanel {
     public loginPanel2(ArrayList<Item> temp, JFrame home){
         this.itemArray = temp;
         login.addActionListener(loginAction(home));
-    //public loginPanel2(){
-        //username.setForeground(Color.LIGHT_GRAY);
-        //password.setForeground(Color.LIGHT_GRAY);
-        //username.addFocusListener(placeholderText("username", username));
-        //password.addFocusListener(placeholderText("password", password));
-        //login.addActionListener(loginAction());
+        username.setForeground(Color.LIGHT_GRAY);
+        password.setForeground(Color.LIGHT_GRAY);
+        username.addFocusListener(placeholderText("username", username));
+        password.addFocusListener(placeholderText("password", password));
         register.addActionListener(registerAction());
         setLayout(new GridLayout(2,2));
         add(username);
