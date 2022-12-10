@@ -5,12 +5,15 @@
 package Panels;
 
 import HomePages.CustomerHomePage;
+import customersshoppingcart.CustomersShoppingCart;
 import customersshoppingcart.Item;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import customersshoppingcart.ShoppingCart;
 import java.util.ArrayList;
+import java.util.HashMap;
+import details.receipt;
 
 /**
  * This class represents the JFrame form for the checkout process and payment.
@@ -68,7 +71,7 @@ public class Checkout extends JFrame{
 
     
     
-    public Checkout(ArrayList<Item> tempCart, CustomerHomePage home) {
+    public Checkout(ArrayList<Item> tempCart, CustomerHomePage home, HashMap<String, Integer> cartQuantity) {
         
         super("Checkout");
        
@@ -108,7 +111,7 @@ public class Checkout extends JFrame{
         southPanel.add(continueButton);
         
         //set up button actions
-        continueButton.addActionListener(continueButtonAction());
+        continueButton.addActionListener(continueButtonAction(tempCart, cartQuantity));
         cancelButton.addActionListener(cancelButtonAction(tempCart, home));
         
         //add panels to borderlayout
@@ -123,11 +126,43 @@ public class Checkout extends JFrame{
         this.setVisible(true);
     }
     
-    private ActionListener continueButtonAction() {
+    private ActionListener continueButtonAction(ArrayList<Item> temp, HashMap<String, Integer> cartQuantity) {
         ActionListener al;
         al = new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                JOptionPane.showMessageDialog(null, "Will display customer receipt");
+            
+            CustomersShoppingCart inventory = new CustomersShoppingCart();
+            ArrayList<Item> inv = inventory.itemArray;
+            
+            System.out.println("itemArray: " + inv);
+            System.out.println("temp: " + temp);
+            System.out.println("cartQuantity: " + cartQuantity);
+            
+            //updating the quantity in store - should be less than current quantity
+            //updating quantitysold - should be greater than current
+            for(int i = 0; i < inv.size(); i++) {
+                if(cartQuantity.containsKey(inv.get(i).getName())) {
+                    System.out.println("For item: " + inv.get(i).getName());
+                    System.out.println("quantity before: " + inv.get(i).getQuantity());
+                    System.out.println("quantity sold before: " + inv.get(i).getQuantitySold());
+                    int currentQuantity = inv.get(i).getQuantity();
+                    //update quantity left in store
+                    inv.get(i).updateQuantity(currentQuantity - cartQuantity.get(inv.get(i).getName()));
+                    //update quantity sold
+                    int currentQuantitySold = inv.get(i).getQuantitySold();
+                    inv.get(i).updateQuantitySold(currentQuantitySold + cartQuantity.get(inv.get(i).getName()));
+                    System.out.println("quantity after: " + inv.get(i).getQuantity());
+                    System.out.println("quantity sold after: " + inv.get(i).getQuantitySold());
+                }
+            }
+            inventory.addItemToFile();
+                
+                
+                
+                receipt receipt = new receipt(temp, cartQuantity); //show new frame
+                receipt.setSize(500,500);
+                receipt.setVisible(true);
+                receipt.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             }
         };
         return al;
