@@ -54,7 +54,7 @@ public class SellerHomePage extends JFrame{
         //centerPanel.add(cell);
         
         //setting up button action listeners
-        addItem.addActionListener(goToAddItemFrame());
+        addItem.addActionListener(goToAddItemFrame(this));
         logout.addActionListener(logoutAction());
         
         
@@ -67,7 +67,7 @@ public class SellerHomePage extends JFrame{
         
     }
     
-    private ActionListener goToAddItemFrame() {
+    private ActionListener goToAddItemFrame(SellerHomePage home) {
         ActionListener al;
         al = new ActionListener() {
             @Override
@@ -75,7 +75,7 @@ public class SellerHomePage extends JFrame{
                 //open the add item frame
                 System.out.println("Add Item button clicked!");
                 dispose();
-                AddItemFrame frame = new AddItemFrame();
+                AddItemFrame frame = new AddItemFrame(home);
                 frame.setSize(500,500);
                 frame.setVisible(true);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

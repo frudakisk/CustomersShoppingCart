@@ -30,6 +30,7 @@ public class AddItemFrame extends JFrame{
     //buttons
     private JButton saveButton = new JButton("Save");
     private JButton addImageButton = new JButton("Select Image");
+    private JButton backButton = new JButton("< Back");
     
     //textFields
     private JTextField nameField = new JTextField();
@@ -48,7 +49,7 @@ public class AddItemFrame extends JFrame{
     String imageLocation = null;
     private int filelength = 0;
     
-    public AddItemFrame() {
+    public AddItemFrame(SellerHomePage home) {
         super("Add Item");
         
         this.setLayout(new BorderLayout());
@@ -68,13 +69,15 @@ public class AddItemFrame extends JFrame{
         centerPanel.add(descriptionLabel);
         centerPanel.add(descriptionField);
         //south panel
-        southPanel.setLayout(new GridLayout(1,2));
+        southPanel.setLayout(new GridLayout(1,3));
+        southPanel.add(backButton);
         southPanel.add(addImageButton);
         southPanel.add(saveButton);
         
         //set up button actions
         saveButton.addActionListener(saveButtonAction());
         addImageButton.addActionListener(imageAction());
+        backButton.addActionListener(backAction(home, this));
         //add panels to borderlayout
         this.getContentPane().setLayout(new BorderLayout());
         this.getContentPane().add("North", northPanel);
@@ -179,11 +182,6 @@ public class AddItemFrame extends JFrame{
         }
         return itemTemp;
     }
-    
-    //testing purposes
-    public static void main(String args[]) {
-        AddItemFrame frame = new AddItemFrame();
-    }
 
     private ActionListener imageAction() {
        ActionListener al;
@@ -206,5 +204,29 @@ public class AddItemFrame extends JFrame{
             
         };
         return al; 
+    }
+    
+    /***
+     * This action listener helps transition from the add item frame to the
+     * seller home page incase they do not want to add anything.
+     * @param home SellerHomePage needs to pop back up
+     * @param current we need to dispose of the current view
+     * @return al - the action. returns the previous instance of sellerhomepage
+     */
+    private ActionListener backAction(SellerHomePage home, JFrame current) {
+        ActionListener al;
+        al = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //close this page and open the parent page
+                current.dispose();
+                SellerHomePage homePage = home;
+                homePage.setSize(500,500);
+                homePage.setVisible(true);
+                homePage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            }
+            
+        };
+        return al;
     }
 }
