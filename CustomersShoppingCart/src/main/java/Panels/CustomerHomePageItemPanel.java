@@ -39,6 +39,8 @@ public class CustomerHomePageItemPanel extends JPanel{
      * @param item the current item for the cell
      * @param tempCart holds items added from the store
      * @param pricePanel the JPanel that holds current price and button to shopping cart view
+     * @precondition item cannot be null, tempCart cannot be null
+     * @postcondition Each panel is populated with specific information
      */
     public CustomerHomePageItemPanel(Item item, ArrayList<Item> tempCart, PriceShoppingCartPanel pricePanel,
             CustomerHomePage home) {
@@ -91,6 +93,8 @@ public class CustomerHomePageItemPanel extends JPanel{
      * @param tempCart temporary cart that holds items added by customer
      * @param pricePanel holds the current price of tempCart
      * @param home the CustomerHomePage that needs to be repainted
+     * @precondition panel contains a valid Item
+     * @postcondition price is updated when button is clicked
      * @return the action of adding to shopping cart and updating cart cost
      */
     private ActionListener addToShoppingCart(Item item, ArrayList<Item> tempCart, PriceShoppingCartPanel pricePanel,
@@ -117,6 +121,12 @@ public class CustomerHomePageItemPanel extends JPanel{
         return al;
     }
     
+    /***
+     * This action directs you to the details popup of the current Item
+     * @precondition item cannot be null
+     * @postcondition a pop up of the details screen appears
+     * @return a pop u[ pf DetailPage
+     */
     private ActionListener itemDetailsAction() {
         ActionListener al;
         al = new ActionListener() {
@@ -128,17 +138,16 @@ public class CustomerHomePageItemPanel extends JPanel{
         return al;
     }
     
-    private ActionListener removeFromShoppingCart() {
-        ActionListener al;
-        al = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //insert code here
-            }
-        };
-        return al;
-    }
-    
+    /***
+     * This function helps show the image by scaling it appropriatly 
+     * @param w the width of the image
+     * @param h the height of the image
+     * @param img the actual image
+     * @return a scaled version of a .jpeg image
+     * @throws Exception 
+     * @precondition have an image in jpeg form
+     * @postcondition scales the image to its container
+     */
     private static BufferedImage scaleImage(int w, int h, BufferedImage img) throws Exception {
         BufferedImage bi;
         bi = new BufferedImage(w, h, BufferedImage.TRANSLUCENT);

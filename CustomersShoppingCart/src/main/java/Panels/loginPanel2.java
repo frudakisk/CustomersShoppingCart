@@ -25,9 +25,24 @@ public class loginPanel2 extends JPanel {
     private ArrayList<Users> userStorage= new ArrayList<>();
     private ArrayList<Item> itemArray = new ArrayList<>();
     File f = new File("logins.txt");
+    
+    /***
+     * Lets us know if the users login was successful or not
+     * @precondition loginSuccess must be initialized
+     * @postcondition return true or false based value
+     * @return loginSuccess - boolean
+     */
     public boolean getLoginSuccess(){
         return loginSuccess; 
     }
+    
+    /***
+     * Constructor for the loginPanel2 class
+     * @param temp the inventory array list
+     * @param home the home Frame for this panel
+     * @precondition temp is not empty
+     * @postcondition components are set in the panel
+     */
     public loginPanel2(ArrayList<Item> temp, JFrame home){
         this.itemArray = temp;
         login.addActionListener(loginAction(home));
@@ -42,10 +57,24 @@ public class loginPanel2 extends JPanel {
         add(login);
         add(register);
     }
+    
+    /***
+     * retrieves the current user
+     * @precondition someone is logged in
+     * @postcondition given the User
+     * @return currentUser
+     */
     public Users getCurrentUser(){
         return currentUser;
     }
 
+    /***
+     * The action that allows a user to login
+     * @param home the parent frame of this panel component
+     * @precondition username and password fields must be set
+     * @postcondition user is potentially logged in
+     * @return the home page of the customer or seller
+     */
     private ActionListener loginAction(JFrame home) {
         ActionListener all;
         all = new ActionListener(){
@@ -73,6 +102,12 @@ public class loginPanel2 extends JPanel {
                 
     }
 
+    /***
+     * Leads the user to registration frame
+     * @precondition user has no account
+     * @postcondition user now has an account
+     * @return a new account
+     */
     private ActionListener registerAction() {
         ActionListener alr;
                 alr = new ActionListener() {
@@ -107,7 +142,12 @@ public class loginPanel2 extends JPanel {
                 return alr;    
     }
     
-    
+    /***
+     * Adds a user to the file associated with user information
+     * @param userStorage the array that holds all users 
+     * @precondition new user was created
+     * @postcondition new user is saved into the logins.txt file
+     */
     private void addData(ArrayList<Users> userStorage){
         try
         {
@@ -123,6 +163,13 @@ public class loginPanel2 extends JPanel {
         }
         
     }
+    
+    /***
+     * read and load an array list with data from the logins.txt file
+     * @precondition logins.txt file exist
+     * @postcondition logins.txt data stored in an array list
+     * @return userTemp - an array list of users
+     */
     private ArrayList<Users> readFile(){
         ArrayList<Users> userTemp = new ArrayList<>();
         try
@@ -150,6 +197,14 @@ public class loginPanel2 extends JPanel {
         return userTemp;
     }
    
+    /***
+     * checks if username and password are valid credentials
+     * @param user username in question
+     * @param pswrd password in question
+     * @param home home frame
+     * @precondition username and password fields have values
+     * @postcondition user is logged in or not
+     */
     private void logic(String user, String pswrd, JFrame home) {
         for (Users i : userStorage){
             System.out.println(i.name+i.password);

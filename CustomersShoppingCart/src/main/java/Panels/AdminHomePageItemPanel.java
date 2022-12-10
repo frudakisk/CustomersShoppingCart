@@ -16,7 +16,8 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 /**
- *
+ *This class produces the item panel that will be displayed on the 
+ * admin home page.
  * @author fruda
  */
 public class AdminHomePageItemPanel extends JPanel{
@@ -29,7 +30,12 @@ public class AdminHomePageItemPanel extends JPanel{
     private ImageIcon ii;
     private SellerHomePage storedframe;
     
-    
+    /***
+     * Constructor for the Item Panel.
+     * @param item of type Item that the panel will display information about
+     * @precondition Have Item to work with
+     * @postcondition Display information about the item
+     */
     public AdminHomePageItemPanel(Item item) {
         this.storeditem = item;
         //this.storedframe = frame;
@@ -66,36 +72,14 @@ public class AdminHomePageItemPanel extends JPanel{
         add(quantity);
         add(editItem);
         editItem.addActionListener(goToEditFrame());
-        //setting up the left panel
-        //leftPanel.setLayout(new GridBagLayout());
-        /*GridBagConstraints gbc = new GridBagConstraints();
-
-        
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        //gbc.gridwidth = 1;
-        leftPanel.add(upQuantityButton,gbc);
-        
-        //gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        //gbc.gridwidth = 1;
-        leftPanel.add(downQuantityButton, gbc);
-        
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.gridwidth = 2;
-        leftPanel.add(itemDetailsPanel, gbc);
-        
-        */
-        //setting up this panel
-        //this.setLayout(new GridLayout(1,2));
-        //this.add(leftPanel);
-        //this.add(editItem);
-        
     }
 
+    /***
+     * Action Listener to transition from current page to the edit frame
+     * @precondition a button has this action listener attatched to it
+     * @postcondition the current frame is close and EditItemFrame is opened
+     * @return the action of opening up the edit page
+     */
     private ActionListener goToEditFrame() {
          ActionListener al;
         al = new ActionListener() {
@@ -114,6 +98,17 @@ public class AdminHomePageItemPanel extends JPanel{
         };
         return al;
     }
+    
+    /***
+     * This function helps show the image by scaling it appropriatly 
+     * @param w the width of the image
+     * @param h the height of the image
+     * @param img the actual image
+     * @return a scaled version of a .jpeg image
+     * @throws Exception 
+     * @precondition have an image in jpeg form
+     * @postcondition scales the image to its container
+     */
     private static BufferedImage scaleImage(int w, int h, BufferedImage img) throws Exception {
         BufferedImage bi;
         bi = new BufferedImage(w, h, BufferedImage.TRANSLUCENT);
