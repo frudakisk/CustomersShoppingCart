@@ -48,11 +48,12 @@ public class AddItemFrame extends JFrame{
     File f = new File("items.txt");
     String imageLocation = null;
     private int filelength = 0;
-    /***
+    /**
      * 
      * @param home homepage is passed so this class has access to the data from the previous frame
-     * @preconditon homepage has been generated
-     * @postconditon additem page is generated
+     * @precondition homepage has been generated
+     * @postcondition additem page is generated
+     *
      */
     public AddItemFrame(SellerHomePage home) {
         super("Add Item");
@@ -94,11 +95,11 @@ public class AddItemFrame extends JFrame{
         this.setVisible(true);
         //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    /***
+    /**
      * saves new items to array and file
      * @return actionlistener
-     * @preconditon homepage for admin has been created
-     * @postconditon new item has been added to inventory and saved to the file
+     * @precondition homepage for admin has been created
+     * @postcondition new item has been added to inventory and saved to the file
      */
     private ActionListener saveButtonAction() {
         ActionListener al;
@@ -143,7 +144,7 @@ public class AddItemFrame extends JFrame{
         return al;
     }
     
-    /***
+    /**
      * Adds an Item to a the itemsFile.
      * @param itemArray array of the inventory that has been altered
      * @precondition itemarray is ready to be saved to a file
@@ -165,7 +166,7 @@ public class AddItemFrame extends JFrame{
         }
     }
     
-    /***
+    /**
      * Reads the items.txt file and returns a list of all its content
      * @return Item inventory array
      * @precondition class is constructed
@@ -198,11 +199,11 @@ public class AddItemFrame extends JFrame{
         }
         return itemTemp;
     }
-    /***
+    /**
      * file picker
      * @return actionlistener
-     * @precondtion class is constructed
-     * @postcondtion user is able to pick a file for an image and the file path is stored to the inventory array
+     * @precondition class is constructed
+     * @postcondition user is able to pick a file for an image and the file path is stored to the inventory array
      */
     private ActionListener imageAction() {
        ActionListener al;
@@ -227,7 +228,7 @@ public class AddItemFrame extends JFrame{
         return al; 
     }
     
-    /***
+    /**
      * This action listener helps transition from the add item frame to the
      * seller home page incase they do not want to add anything.
      * @param home SellerHomePage needs to pop back up

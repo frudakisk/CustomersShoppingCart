@@ -20,6 +20,9 @@ public class CustomerHomePageTest {
     public CustomerHomePageTest() {
     }
 
+    /**
+     * @throws Exception
+     */
     @org.junit.BeforeClass
     public static void setUpClass() throws Exception {
     }
@@ -28,13 +31,8 @@ public class CustomerHomePageTest {
     public static void tearDownClass() throws Exception {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
+
+
 
     /**
      * Test of getCart method, of class CustomerHomePage.

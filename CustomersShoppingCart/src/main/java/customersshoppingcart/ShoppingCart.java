@@ -19,7 +19,7 @@ import Panels.Checkout;
 /**
  * This class is for the shopping cart object of the project. This is where
  * the customer will store items that they wish to purchase. Customer can also
- * edit information in the shopping cart (add & remove items)
+ * edit information in the shopping cart (add and remove items)
  * @author fruda
  */
 public class ShoppingCart extends JFrame{

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 /**
- *
+ * This class representds the frame for the details information
  * @author nicholasgiacobbe
  */
 public class DetailPage extends JFrame {

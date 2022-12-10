@@ -235,8 +235,8 @@ public class EditItemFrame extends JFrame {
     /***
      * 
      * @return action listener
-     * @preconditon class is constructed
-     * @postconditon item is deleted from the inventory and returned to the admin homepage
+     * @precondition class is constructed
+     * @postcondition item is deleted from the inventory and returned to the admin homepage
      */
     private ActionListener deleteAction() {
         ActionListener al;
@@ -251,6 +251,11 @@ public class EditItemFrame extends JFrame {
                 itemArray.remove(itemtochange.getItemId());
                 addItemToFile(itemArray);
                 dispose();
+                CustomersShoppingCart customer = new CustomersShoppingCart();
+                SellerHomePage sellerHomePage = new SellerHomePage(customer.itemArray);
+                sellerHomePage.setSize(500,500);
+                sellerHomePage.setVisible(true);
+                sellerHomePage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             }
             
         };
