@@ -53,7 +53,7 @@ public class ShoppingCart extends JFrame{
     public ShoppingCart(ArrayList<Item> cart, CustomerHomePage home) {
         super("Shopping Cart");
         //add content to shopping cart
-        shoppingCart = cart;
+        this.shoppingCart = cart;
         //update the pricelabel
         updatePrice();
         repaintPriceValue();

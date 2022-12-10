@@ -38,6 +38,7 @@ public class receipt extends JFrame {
     public receipt(ArrayList<Item> temp, HashMap<String, Integer> cartQuantity){
         super("Receipt");
         this.itemsArray = temp;
+        System.out.println(temp);
         northPanel.setLayout(new GridLayout(1,4));
         northPanel.add(titleLabel);
         northPanel.add(quantityLabel);

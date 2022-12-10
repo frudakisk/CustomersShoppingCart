@@ -97,6 +97,7 @@ public class ShoppingCartItemPanel extends JPanel{
                     String totalPriceString = Double.toString(totalPriceDouble);
                     totalPrice.setText(totalPriceString);
                     //make sure these changes are reflected in the shopping cart
+                    shoppingCart.clear();
                     shoppingCart.add(item);
                     
                     //printing out shoppingCart to see new results
