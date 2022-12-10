@@ -31,7 +31,12 @@ public class SellerHomePage extends JFrame{
     private JPanel centerPanel = new JPanel();
     public ArrayList<Item> itemsArray = new ArrayList<>();
     
-    
+    /**
+     * 
+     * @param inventory array of all the items
+     * @precondtion inventory array exists and is passed into the constructor
+     * @postconditon a jframe of the seller page is generated
+     */
     public SellerHomePage(ArrayList<Item> inventory) {
         super("Admin Home Page");
         this.itemsArray = inventory;
@@ -71,7 +76,13 @@ public class SellerHomePage extends JFrame{
         this.getContentPane().add("Center", centerPanel);
         
     }
-    
+    /***
+     * 
+     * @param home passes this class so additems has access to all the data in home
+     * @return returns an action listener
+     * @preconditon class is generated
+     * @postcondition add item frame is generated and current frame is disposed
+     */
     private ActionListener goToAddItemFrame(SellerHomePage home) {
         ActionListener al;
         al = new ActionListener() {
@@ -90,7 +101,13 @@ public class SellerHomePage extends JFrame{
         };
         return al;
     }
-    
+    /***
+     * 
+     * @param items takes the array of the inventory
+     * @return returns action listened
+     * @precondtion class is constructed
+     * @postcondtion sales frame is generated showing information to the admin about the store
+     */
     private ActionListener goToSalesFrame(ArrayList<Item> items) {
         ActionListener al;
         al = new ActionListener() {
@@ -105,7 +122,12 @@ public class SellerHomePage extends JFrame{
         };
         return al;
     }
-
+    /***
+     * 
+     * @return action listener for the button
+     * @precondtion class is constructed
+     * @postcondtion frame is destroyed and login page is shown
+     */
     
     private ActionListener logoutAction() {
         ActionListener al;

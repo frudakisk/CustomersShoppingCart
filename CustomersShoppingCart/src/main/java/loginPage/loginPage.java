@@ -18,6 +18,13 @@ public class loginPage extends JFrame {
     private loginPanel2 loginPanel;
     private JPanel northPanel = new JPanel();
     private boolean x = false;
+    
+    /***
+     * constructor
+     * @param temp 
+     * @preconditon arraylist of the inventories is generated
+     * @postconditon loginpage is generated
+     */
     public loginPage(ArrayList<Item> temp){
         super("login");
         this.itemArray = temp;
@@ -27,6 +34,12 @@ public class loginPage extends JFrame {
         this.getContentPane().add("North", northPanel);
        
     }
+    /***
+     * 
+     * @return returns the loginpanel2 that we use to perform the login action
+     * @preconditon class is constructed
+     * @postcondtion login panel is returned
+     */
     public loginPanel2 getLoginPanel(){
         return loginPanel;
     }

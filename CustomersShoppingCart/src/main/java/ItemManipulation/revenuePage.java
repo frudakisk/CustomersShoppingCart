@@ -35,7 +35,13 @@ public class revenuePage extends JFrame{
     private JPanel southPanel = new JPanel();
     private double totalRevenue = 0;
     
-    
+    /***
+     * constructor
+     * @param temp takes in inventory array
+     * @precondition array eexists for inventory
+     * 
+     * @postcondition revenue page is displayed
+     */
     public revenuePage(ArrayList<Item> temp){
         super("Sales");
         this.itemsArray = temp;

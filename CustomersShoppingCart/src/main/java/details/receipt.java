@@ -33,7 +33,14 @@ public class receipt extends JFrame {
     private JPanel southPanel = new JPanel();
     private double total = 0;
     
-    
+    /***
+     * constructor
+     * @param temp array list of items in the cart
+     * @param cartQuantity hashmap of the quanties
+     * @param inventory inventory array of items
+     * @precondition cart hashmap and inventories exist and program is ready to generate a reciept
+     * @postcondition receipt is generated. 
+     */
     public receipt(ArrayList<Item> temp, HashMap<String, Integer> cartQuantity, ArrayList<Item> inventory){
         super("Receipt");
         this.itemsArray = temp;
@@ -78,7 +85,13 @@ public class receipt extends JFrame {
         this.getContentPane().add("South", southPanel);
 
     }
-    
+    /***
+     * 
+     * @param inventory inventory array
+     * @return action listener
+     * @precondition class is constructed
+     * @postcondtion user is returned to the hompage. 
+     */
     private ActionListener returnToStore(ArrayList<Item> inventory) {
         ActionListener al;
         al = new ActionListener() {

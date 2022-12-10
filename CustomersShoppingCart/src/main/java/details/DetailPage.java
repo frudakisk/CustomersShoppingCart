@@ -30,6 +30,12 @@ public class DetailPage extends JFrame {
     private JPanel centerPanel = new JPanel();
     private JPanel southPanel = new JPanel();
     private JPanel bottomPanel = new JPanel();
+    /***
+     * constructor
+     * @param temp item to pull and populated data
+     * @precondition item is ready to be passed in
+     * @postcondtion detail page is generated
+     */
     public DetailPage(Item temp){
         super("Details");
         northPanel.setLayout(new GridLayout(1,1));
@@ -76,6 +82,16 @@ public class DetailPage extends JFrame {
         this.setVisible(true);
         
     }
+    /***
+     * 
+     * @param w desired width of the image int
+     * @param h desired height of the image int
+     * @param img image
+     * @return returns a BufferedImage
+     * @throws Exception image does not exist
+     * @precondition image and desired size is passed in
+     * @postcondtion image is scaled and returned
+     */
     private static BufferedImage scaleImage(int w, int h, BufferedImage img) throws Exception {
         BufferedImage bi;
         bi = new BufferedImage(w, h, BufferedImage.TRANSLUCENT);

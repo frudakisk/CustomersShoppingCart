@@ -47,6 +47,14 @@ public class EditItemFrame extends JFrame {
     File f = new File("items.txt");
     private String imageLocation = null;
     private int quantitySold = 0;
+    
+    /***
+     * 
+     * @param passeditem takes an Item class
+     * @param frame takes the frame to update the information from the previous frame
+     * @precondtion sellerhomepage has been generated
+     * @postcondtion edit frame is generated with the item information
+     */
     public EditItemFrame(Item passeditem, SellerHomePage frame ){
         super("Edit Item");
         this.itemtochange = passeditem;
@@ -97,6 +105,12 @@ public class EditItemFrame extends JFrame {
         
         
     }
+    /***
+     * saves new items to array and file
+     * @return actionlistener
+     * @preconditon homepage for admin has been created
+     * @postconditon new item has been added to inventory and saved to the file in this case the item has been edited returns to homepage
+     */
     private ActionListener saveButtonAction() {
         ActionListener al;
         al = new ActionListener() {
@@ -138,7 +152,9 @@ public class EditItemFrame extends JFrame {
     
     /***
      * Adds an Item to a the itemsFile.
-     * @param newItem 
+     * @param newItem takes inventory array
+     * @precondtion class is constructed
+     * @postcondtion item is added to the file
      */
     private void addItemToFile(ArrayList<Item> itemArray) {
          try
@@ -155,6 +171,12 @@ public class EditItemFrame extends JFrame {
             ioe.printStackTrace();
         }
     }
+    /***
+     * 
+     * @return returns the inventory fetched from the file
+     * @precondtion class is constructed
+     * @postcondtion inventory from saved file
+     */
     private ArrayList<Item> readFile() {
         ArrayList<Item> itemTemp = new ArrayList<>();
         try
@@ -182,6 +204,12 @@ public class EditItemFrame extends JFrame {
         }
         return itemTemp;
     }
+    /***
+     * image picker
+     * @return action listener
+     * @precondtion class is constructed
+     * @postconditon user is able to pick image
+     */
     private ActionListener imageAction() {
        ActionListener al;
         al = new ActionListener() {
@@ -204,7 +232,12 @@ public class EditItemFrame extends JFrame {
         };
         return al; 
     }
-
+    /***
+     * 
+     * @return action listener
+     * @preconditon class is constructed
+     * @postconditon item is deleted from the inventory and returned to the admin homepage
+     */
     private ActionListener deleteAction() {
         ActionListener al;
         al = new ActionListener(){

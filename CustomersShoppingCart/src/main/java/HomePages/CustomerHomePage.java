@@ -36,6 +36,9 @@ public class CustomerHomePage extends JFrame{
     /***
      * Constructor for CustomerHomePage
      * @param temp an ArrayList containing all items in inventory
+     * @precondition an array list containing the inventories is generated and passed in
+     * @postcondition a jframe is generated
+     * 
      */
     public CustomerHomePage(ArrayList<Item> temp) {
         super("Home Page - Customer");
@@ -76,10 +79,22 @@ public class CustomerHomePage extends JFrame{
         
         
     }
-    
+    /***
+     * 
+     * @return returns the shopping cart located in this class
+     * @precondition the class has been constructed
+     * @postcondtion the shopping cart array list is returned
+     */
     public ArrayList<Item> getCart() {
         return tempCart;
     }
+    
+    /***
+     * 
+     * @param newCart takes a shopping cart arraylist 
+     * @precondition class is constructed
+     * @postconditon updated arraylist is stored in the class
+     */
     
     public void setCart(ArrayList<Item> newCart){
         tempCart.clear();
@@ -91,7 +106,12 @@ public class CustomerHomePage extends JFrame{
         pricePanel.repaintPriceValue();
         //this.repaint()
     }
-    
+    /***
+     * 
+     * @param cart cart array
+     * @precondition class is constructed
+     * @postconditon stores the shopping cart array
+     */
     public void setPriceShoppingCartPanel(ArrayList<Item> cart) {
         pricePanel = new PriceShoppingCartPanel(cart, this);
     }
@@ -103,7 +123,12 @@ public class CustomerHomePage extends JFrame{
 //        window.setVisible(true);
 //        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //    }
-
+    /***
+     * 
+     * @return returns action listener
+     * @preconditon class is constructed
+     * @postconditon frame is destroyed and user is taken back to logout
+     */
     private ActionListener logoutAction() {
         ActionListener al;
         al = new ActionListener(){
