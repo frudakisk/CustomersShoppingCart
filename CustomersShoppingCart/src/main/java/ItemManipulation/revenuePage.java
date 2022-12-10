@@ -6,6 +6,7 @@ package ItemManipulation;
 
 import Panels.CustomerHomePageItemPanel;
 import Panels.PriceShoppingCartPanel;
+import Panels.revenuePanel;
 import customersshoppingcart.Item;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;

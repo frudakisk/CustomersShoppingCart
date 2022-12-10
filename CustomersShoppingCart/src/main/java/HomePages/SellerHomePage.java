@@ -5,6 +5,7 @@
 package HomePages;
 
 import ItemManipulation.AddItemFrame;
+import ItemManipulation.revenuePage;
 import Panels.AdminHomePageItemPanel;
 import customersshoppingcart.Item;
 import java.awt.*;
@@ -25,6 +26,7 @@ public class SellerHomePage extends JFrame{
     private JButton logout = new JButton("logout");
     private JPanel northPanel = new JPanel();
     private JPanel northPanelButtons = new JPanel();
+    private JButton salesButton = new JButton("Sales");
     //Set up items for center panel
     private JPanel centerPanel = new JPanel();
     public ArrayList<Item> itemsArray = new ArrayList<>();
@@ -35,9 +37,10 @@ public class SellerHomePage extends JFrame{
         this.itemsArray = inventory;
         //Setting up north panel
         northPanel.setLayout(new GridLayout(1,1));
-        northPanelButtons.setLayout(new GridLayout(1,2));
+        northPanelButtons.setLayout(new GridLayout(1,3));
         northPanel.add(welcome);
         northPanelButtons.add(addItem);
+        northPanelButtons.add(salesButton);
         northPanelButtons.add(logout);
         northPanel.add(northPanelButtons);
         
@@ -56,6 +59,8 @@ public class SellerHomePage extends JFrame{
         //setting up button action listeners
         addItem.addActionListener(goToAddItemFrame(this));
         logout.addActionListener(logoutAction());
+        salesButton.addActionListener(goToSalesFrame(inventory));
+        
         
         
         //Setting up JFrame layout
@@ -86,14 +91,23 @@ public class SellerHomePage extends JFrame{
         return al;
     }
     
-//    //testing purposes
-//    public static void main (String args[]) {
-//        SellerHomePage window = new SellerHomePage();
-//        window.setSize(500,500);
-//        window.setVisible(true);
-//        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//    }
+    private ActionListener goToSalesFrame(ArrayList<Item> items) {
+        ActionListener al;
+        al = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //pop up, not replace
+                revenuePage rev = new revenuePage(items); 
+                rev.setSize(500,500);
+                rev.setVisible(true);
+                rev.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            }
+            
+        };
+        return al;
+    }
 
+    
     private ActionListener logoutAction() {
         ActionListener al;
         al = new ActionListener(){
