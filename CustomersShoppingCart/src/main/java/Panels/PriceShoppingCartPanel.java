@@ -29,6 +29,9 @@ public class PriceShoppingCartPanel extends JPanel{
     /***
      * Constructor for the PriceShoppingCartPanel class
      * @param tempCart a transfer of items in an array list to this small panel
+     * @param home the parent frame of this panel
+     * @precondition tempCart cannot be null
+     * @postcondition the total price of the shopping cart is displayed
      */
     public PriceShoppingCartPanel(ArrayList<Item> tempCart, CustomerHomePage home) {
         
@@ -53,6 +56,8 @@ public class PriceShoppingCartPanel extends JPanel{
     
     /***
      * A function to repaint the label value of the sum in shopping cart
+     * @precondition priceSum must be a double
+     * @postcondition refreshes the price on the screen
      */
     public void repaintPriceValue(){
         String priceString = Double.toString(priceSum);
@@ -63,6 +68,8 @@ public class PriceShoppingCartPanel extends JPanel{
     /***
      * updates the price in the shopping cart. should be called every time
      * an item is added to the shopping cart
+     * @precondition cartCopy cannot be null
+     * @postcondition the sum of the cart is created
      */
     public void updateCart() {
         priceSum = 0;
@@ -73,7 +80,9 @@ public class PriceShoppingCartPanel extends JPanel{
 
     /***
      * Action listener to segue from customer home page to shopping cart
-     * @return al the ActionListener object
+     * @precondition tempCart must have been initialized
+     * @postcondition the ShoppingCart will be displayed if !tempCart.isEmpty()
+     * @return al the ActionListener object to transition to ShoppingCart frame
      */
     private ActionListener buttonAction(ArrayList<Item> tempCart, CustomerHomePage home) {
         ActionListener al;
@@ -99,6 +108,8 @@ public class PriceShoppingCartPanel extends JPanel{
 
     /***
      * A get method to return the sum in the shopping cart
+     * @precondition priceSum must be a double
+     * @postcondition priceSum is returned
      * @return priceSum - the total cost of items in the cart
      */
     public double getPriceSum() {

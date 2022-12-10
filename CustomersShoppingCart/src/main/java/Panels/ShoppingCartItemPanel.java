@@ -14,7 +14,8 @@ import java.util.Set;
 import javax.swing.*;
 
 /**
- *
+ *This class is the specific panel that contains information about an item in the
+ * shoppingCart frame
  * @author fruda
  */
 public class ShoppingCartItemPanel extends JPanel{
@@ -34,6 +35,8 @@ public class ShoppingCartItemPanel extends JPanel{
      * @param item item that the panel will be previewing in the shopping cart
      * @param cartQuantity key:value pair for quantity of an item in the cart
      * @param home - the parent JFrame 
+     * @precondition shoppingCart cannot be empty
+     * @postcondition A panel of an item is spawned on the shoppingCart frame
      */
     public ShoppingCartItemPanel(ArrayList<Item> shoppingCart, Item item,
             HashMap<String,Integer> cartQuantity, ShoppingCart home) {
@@ -58,9 +61,7 @@ public class ShoppingCartItemPanel extends JPanel{
         //add action listeners to buttons
         incrementButton.addActionListener(incrementCartItem(shoppingCart, item, cartQuantity, home));
         decrementButton.addActionListener(decrementCartItem(shoppingCart, item, cartQuantity, home, this));
-        
-        
-        
+          
     }
     
     /***
@@ -71,6 +72,8 @@ public class ShoppingCartItemPanel extends JPanel{
      * @param item the item to be added to the shopping cart
      * @param cartQuantity key:value that holds # of items in shopping cart
      * @param home ShoppingCart is the parent frame and is  needed to refresh the page
+     * @precondition item must be valid
+     * @postcondition panel quantity is updated in UI and in back end
      * @return al - the action listener action
      */
     public ActionListener incrementCartItem(ArrayList<Item> shoppingCart, Item item, 
@@ -126,6 +129,8 @@ public class ShoppingCartItemPanel extends JPanel{
      * @param cartQuantity holds the quantity of each item in the shoppingCart
      * @param home ShoppingCart - to refresh this page with new information
      * @param currentPanel this JPanel. Used to remove the panel once quantity = 0
+     * @precondition item must be valid
+     * @postcondition quantity of item is updated in UI and back end
      * @return al - Action of the button
      */
     public ActionListener decrementCartItem(ArrayList<Item> shoppingCart, Item item, 

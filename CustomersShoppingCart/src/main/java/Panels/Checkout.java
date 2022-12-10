@@ -37,16 +37,11 @@ public class Checkout extends JFrame{
     private JLabel stateLabel = new JLabel("      State");
     private JLabel AddresszipLabel = new JLabel("      Zipcode");
     
-    
-    
-    
-    
     // adding separator 
     JSeparator s = new JSeparator();
     JSeparator t = new JSeparator();
     JSeparator a = new JSeparator();
-    
-    
+       
     //buttons
     private JButton cancelButton = new JButton("Back");
     private JButton continueButton = new JButton("Place your order");
@@ -62,7 +57,6 @@ public class Checkout extends JFrame{
     private JTextField stateField = new JTextField();
     private JTextField AddresszipField = new JTextField();
     
-
     //panels
     private JPanel northPanel = new JPanel();
     private JPanel centerPanel = new JPanel();
@@ -71,7 +65,14 @@ public class Checkout extends JFrame{
     private JPanel eastPanel = new JPanel();
 
     
-    
+    /***
+     * Constructor for Checkout
+     * @param tempCart the customers shopping cart
+     * @param home the parent screen of this file
+     * @param cartQuantity key:value pair for quantity of item in cart
+     * @precondition tempCart is not null, cartQuantity is not empty
+     * @postcondition a form for the customer to fill out is spawned
+     */
     public Checkout(ArrayList<Item> tempCart, CustomerHomePage home, HashMap<String, Integer> cartQuantity) {
         
         super("Checkout");
@@ -128,11 +129,14 @@ public class Checkout extends JFrame{
     }
     
     /***
-     * 
+     * This action places your order. Store inventory is updated, and cart information
+     * is cleared for new shopping experience
      * @param temp customers shopping cart
      * @param cartQuantity hash map that shows quantity of item in cart
      * @param home the screen to be redirected to 
-     * @return 
+     * @precondition temp and cartQuantity must be not empty
+     * @postcondition store information is updated
+     * @return returns the receipt frame
      */
     private ActionListener continueButtonAction(ArrayList<Item> temp, HashMap<String, Integer> cartQuantity, CustomerHomePage home) {
         ActionListener al;
@@ -173,16 +177,21 @@ public class Checkout extends JFrame{
             receipt.setVisible(true);
             //clear the shopping cart and update price panel
             temp.clear();
-//            CustomerHomePage homePage = home;
-//            homePage.setSize(500,500);
-//            homePage.setVisible(true);
-            
-                
+            cartQuantity.clear();   
             }
         };
         return al;
     }
 
+    /***
+     * This action cancels the transaction and returns you to the home page, which
+     * should be the the shopping cart
+     * @param tempCart the customers shopping cart
+     * @param home parent frame - shopping cart
+     * @precondition tempCart is not empty
+     * @postcondition returned to home page
+     * @return returns us to the home page of this frame
+     */
     private ActionListener cancelButtonAction(ArrayList<Item> tempCart, CustomerHomePage home) {
         ActionListener al;
         al = new ActionListener() {
@@ -198,10 +207,4 @@ public class Checkout extends JFrame{
         };
         return al;
     }
-
-  
-    //testing purposes
-    //public static void main(String args[]) {
-    //    Checkout frame = new Checkout();
-    //}
 }

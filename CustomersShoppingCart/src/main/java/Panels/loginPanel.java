@@ -8,7 +8,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.io.*;
 /**
- *
+ * This class extends JPanel and presents login information
  * @author nicholasgiacobbe
  */
 public class loginPanel extends JPanel {
@@ -19,9 +19,22 @@ public class loginPanel extends JPanel {
     private boolean loginSuccess = false;
     File f = new File("C:\\Files");
     private int line;
+    
+    /***
+     * Lets us know if the users login was successful or not
+     * @precondition loginSuccess must be initialized
+     * @postcondition return true or false based value
+     * @return loginSuccess - boolean
+     */
     public boolean getLoginSuccess(){
         return loginSuccess; 
     }
+    
+    /***
+     * Constructor for the loginPanel class.
+     * @precondition components have been initialized
+     * @postcondition components are added to panel
+     */
     public loginPanel(){
         login.addActionListener(loginAction());
         register.addActionListener(registerAction());
@@ -31,6 +44,13 @@ public class loginPanel extends JPanel {
         add(login);
         add(register);
     }
+    
+    /***
+     * This action determines if a user can login or not based off of their credentials
+     * @precondition username and password fields have been filled out
+     * @postcondition login success value is set
+     * @return the home page if the user logs in successfully
+     */
     private ActionListener loginAction(){
         ActionListener all;
         all = new ActionListener(){
@@ -56,6 +76,13 @@ public class loginPanel extends JPanel {
         };
         return all;
     }
+    
+    /***
+     * This action directs you to the registration frame for a user to register
+     * @precondition user is on login page
+     * @postcondition user is in registration page
+     * @return the registration frame
+     */
     private ActionListener registerAction(){
         ActionListener alr;
         alr = new ActionListener() {
@@ -84,11 +111,23 @@ public class loginPanel extends JPanel {
         };
         return alr;
     }
+    
+    /***
+     * Creates the folder to hold users if it does not exist
+     * @precondition folder does not exist
+     * @postcondition folder is created
+     */
     private void createFolder(){
         if(!f.exists()){
             f.mkdirs();
         }
     }
+    
+    /***
+     * Reads the file with user information and checks if the file exists
+     * @precondition none
+     * @postcondition tells us if logins.txt exist or is created
+     */
     void readFile(){
         try {
             FileReader fr = new FileReader(f+"\\logins.txt");
@@ -103,6 +142,14 @@ public class loginPanel extends JPanel {
         }
         
     }
+    
+    /***
+     * Adds a user to the file associated with user information
+     * @param username the new users username
+     * @param password the new users password
+     * @precondition username and password values are set
+     * @postcondition a new user is added to the logins.txt file
+     */
     void addData(String username,String password){
         try {
             RandomAccessFile raf = new RandomAccessFile(f+"\\logins.txt", "rw");
@@ -127,6 +174,12 @@ public class loginPanel extends JPanel {
         }
         
     }
+    
+    /***
+     * counts the number of lines in the logins.txt file
+     * @precondition logins.txt file ,ust exist
+     * @postcondition tells us how many lines are in the file
+     */
     void countLines(){
         try {
             line=0;
@@ -142,6 +195,14 @@ public class loginPanel extends JPanel {
         }
         
     }
+    
+    /***
+     * Checks if the username and password entered are associated with an actual account
+     * @param usr username in question
+     * @param pswd password in question
+     * @precondition username and password field contain values
+     * @postcondition loginSuccess = true if credentials are valid
+     */
     void logic(String usr, String pswd) {
         try {
             RandomAccessFile raf = new RandomAccessFile(f + "\\logins.txt", "rw");
@@ -170,10 +231,7 @@ public class loginPanel extends JPanel {
         } catch (IOException ex) {
         }
 
-    }
-    
-    
-    
+    }   
 }
     
     

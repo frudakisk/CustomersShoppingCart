@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- *
+ * This class represents the component that will show on the receipt frame
  * @author KarlHezel
  */
 public class receiptPanel extends JPanel  {
@@ -23,6 +23,9 @@ public class receiptPanel extends JPanel  {
     /***
      * This panel will show statistics about a specific item
      * @param item the item to be analyzed
+     * @param cartQuantity key:value pair of quantity of an item in the cart
+     * @precondition item is valid
+     * @postcondition a panel showing details about the item purchased
      */
     public receiptPanel(Item item, HashMap<String, Integer> cartQuantity) {
         //setup the layout

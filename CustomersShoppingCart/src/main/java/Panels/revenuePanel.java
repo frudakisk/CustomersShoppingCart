@@ -9,7 +9,7 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
- *
+ * This class represents the panel that will be in the revenuePage
  * @author fruda
  */
 public class revenuePanel extends JPanel {
@@ -23,6 +23,8 @@ public class revenuePanel extends JPanel {
     /***
      * This panel will show statistics about a specific item
      * @param item the item to be analyzed
+     * @precondition item is valid
+     * @postcondition revenue information about item is displayed
      */
     public revenuePanel(Item item) {
         //setup the layout
