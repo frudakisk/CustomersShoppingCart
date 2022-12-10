@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 /**
- * This class is for products in inventory
+ * This class is for products in inventory. This is where all the items will be stored for the project.
+ * any additional products added or subtracted will be reflected in here. 
  * @author fruda
  */
 public class Item implements Serializable{
@@ -83,32 +84,82 @@ public class Item implements Serializable{
     public void updateImage(String newImage) {
         this.imageFileLocation = newImage;
     }
+    
+    /***
+     * 
+     * @return the item ID for each item
+     */
     public int getItemId(){
         return itemId;
     }
+    
+   /***
+    * 
+    * @return name the name of the item. 
+    */
     public String getName(){
         return name;
     }
+    
+    /***
+     * 
+     * @return the description of each item. 
+     */
     public String description(){
         return description;
     }
+    
+    /***
+     * 
+     * @return price returns the price amount the item being sold.
+     */
     public double getPrice(){
         return price;
     }
+    
+    /***
+     * 
+     * @return the quantity available. 
+     */
     public int getQuantity(){
         return quantity;
     }
+    
+    /***
+     * 
+     * 
+     * @return returns the amount sold. 
+     */
     public int getQuantitySold(){
         return quantitySold;
     }
+    
+    /***
+     * 
+     * 
+     * @return imageFileLocation the file location of the image displayed. 
+     */
     public String getImageFileLocation(){
         return imageFileLocation;
     }
+    
+    /***
+     * Adds the format for each item being sold.
+     * @return itemId the item ID for each item
+     * @return name The name of the item.
+     * @return price the price of the item.
+     * @return quantity the amount available of the item. 
+     */
     @Override
     public String toString() {
         return itemId + " | " + name + " | " + price + " | " + quantity;
     }
     
+    
+    /***
+     * sets the array for items
+     * @return returns all the items within the array. 
+     */
     public ArrayList<String> toArrayList(){
         ArrayList<String> itemArray = new ArrayList<>();
         //convert all attributes to string
