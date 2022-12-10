@@ -139,7 +139,7 @@ public class Checkout extends JFrame{
             System.out.println("cartQuantity: " + cartQuantity);
             
             //updating the quantity in store - should be less than current quantity
-            
+            //updating quantitysold - should be greater than current
             for(int i = 0; i < inv.size(); i++) {
                 if(cartQuantity.containsKey(inv.get(i).getName())) {
                     System.out.println("For item: " + inv.get(i).getName());
@@ -155,24 +155,6 @@ public class Checkout extends JFrame{
                     System.out.println("quantity sold after: " + inv.get(i).getQuantitySold());
                 }
             }
-            
-            //update the items by the cartQuantity
-            
-            
-            //find key
-                
-//            for(int i = 0; i < inventory.itemArray.size(); i++) {
-//                Item item = inventory.itemArray.get(i);
-//                int quantity = cartQuantity.get(item.getName());
-//                
-//                    
-//                int Quantitysold = item.getQuantitySold();
-//                item.updateQuantitySold(quantity+Quantitysold);
-//                int itemquantity = item.getQuantity();
-//                item.updateQuantity(itemquantity-quantity);
-//                inventory.itemArray.set(i, item);
-//
-//            }
             inventory.addItemToFile();
                 
                 
