@@ -56,28 +56,28 @@ public class AddItemFrame extends JFrame{
         
         //set up border panels
         //North panel
-        northPanel.add(title);
+        this.northPanel.add(title);
         //Center Panel
-        descriptionField.setLineWrap(true);
-        centerPanel.setLayout(new GridLayout(4,2));
-        centerPanel.add(nameLabel);
-        centerPanel.add(nameField);
-        centerPanel.add(priceLabel);
-        centerPanel.add(priceField);
-        centerPanel.add(quantityLabel);
-        centerPanel.add(quantityField);
-        centerPanel.add(descriptionLabel);
-        centerPanel.add(descriptionField);
+        this.descriptionField.setLineWrap(true);
+        this.centerPanel.setLayout(new GridLayout(4,2));
+        this.centerPanel.add(nameLabel);
+        this.centerPanel.add(nameField);
+        this.centerPanel.add(priceLabel);
+        this.centerPanel.add(priceField);
+        this.centerPanel.add(quantityLabel);
+        this.centerPanel.add(quantityField);
+        this.centerPanel.add(descriptionLabel);
+        this.centerPanel.add(descriptionField);
         //south panel
-        southPanel.setLayout(new GridLayout(1,3));
-        southPanel.add(backButton);
-        southPanel.add(addImageButton);
-        southPanel.add(saveButton);
+        this.southPanel.setLayout(new GridLayout(1,3));
+        this.southPanel.add(backButton);
+        this.southPanel.add(addImageButton);
+        this.southPanel.add(saveButton);
         
         //set up button actions
-        saveButton.addActionListener(saveButtonAction());
-        addImageButton.addActionListener(imageAction());
-        backButton.addActionListener(backAction(home, this));
+        this.saveButton.addActionListener(saveButtonAction());
+        this.addImageButton.addActionListener(imageAction());
+        this.backButton.addActionListener(backAction(home, this));
         //add panels to borderlayout
         this.getContentPane().setLayout(new BorderLayout());
         this.getContentPane().add("North", northPanel);
@@ -108,13 +108,15 @@ public class AddItemFrame extends JFrame{
                 //read the file, save its content to array list, add new content
                 //save back to file
                 //check if file is empty
+                int quantitySold = 0;
                 if(f.length() == 0) {
-                    Item newItem = new Item(0, name, description, price, quantity, imageLocation);
+                    
+                    Item newItem = new Item(0, name, description, price, quantity, quantitySold, imageLocation);
                     itemArray.add(newItem);
                     addItemToFile(itemArray);
                 } else {
                     itemArray = readFile();
-                    Item newItem = new Item(filelength, name, description, price, quantity, imageLocation);
+                    Item newItem = new Item(filelength, name, description, price, quantity, quantitySold, imageLocation);
                     itemArray.add(newItem);
                     addItemToFile(itemArray);
                 };

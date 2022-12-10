@@ -45,40 +45,42 @@ public class EditItemFrame extends JFrame {
     //stuff for file reading
     ArrayList<Item> itemArray = new ArrayList<>();
     File f = new File("items.txt");
-    String imageLocation = null;
+    private String imageLocation = null;
+    private int quantitySold = 0;
     public EditItemFrame(Item passeditem, SellerHomePage frame ){
         super("Edit Item");
         this.itemtochange = passeditem;
-        nameField = new JTextField(itemtochange.getName());
-        priceField = new JTextField(String.valueOf(itemtochange.getPrice()));
-        quantityField = new JTextField(String.valueOf(itemtochange.getQuantity()));
-        descriptionField = new JTextArea(itemtochange.description());
-        descriptionField.setLineWrap(true);
-        imageLocation = itemtochange.getImageFileLocation();
+        this.nameField = new JTextField(itemtochange.getName());
+        this.priceField = new JTextField(String.valueOf(itemtochange.getPrice()));
+        this.quantityField = new JTextField(String.valueOf(itemtochange.getQuantity()));
+        this.descriptionField = new JTextArea(itemtochange.description());
+        this.descriptionField.setLineWrap(true);
+        this.imageLocation = itemtochange.getImageFileLocation();
+        this.quantitySold = itemtochange.getQuantitySold();
         this.setLayout(new BorderLayout());
         //set up border panels
         //North panel
-        northPanel.add(title);
+        this.northPanel.add(title);
         //Center Panel
-        centerPanel.setLayout(new GridLayout(4,2));
-        centerPanel.add(nameLabel);
-        centerPanel.add(nameField);
-        centerPanel.add(priceLabel);
-        centerPanel.add(priceField);
-        centerPanel.add(quantityLabel);
-        centerPanel.add(quantityField);
-        centerPanel.add(descriptionLabel);
-        centerPanel.add(descriptionField);
+        this.centerPanel.setLayout(new GridLayout(4,2));
+        this.centerPanel.add(nameLabel);
+        this.centerPanel.add(nameField);
+        this.centerPanel.add(priceLabel);
+        this.centerPanel.add(priceField);
+        this.centerPanel.add(quantityLabel);
+        this.centerPanel.add(quantityField);
+        this.centerPanel.add(descriptionLabel);
+        this.centerPanel.add(descriptionField);
         //south panel
-        southPanel.setLayout(new GridLayout(1,3));
-        southPanel.add(deleteButton);
-        southPanel.add(addImageButton);
-        southPanel.add(saveButton);
+        this.southPanel.setLayout(new GridLayout(1,3));
+        this.southPanel.add(deleteButton);
+        this.southPanel.add(addImageButton);
+        this.southPanel.add(saveButton);
         
         //set up button actions
-        saveButton.addActionListener(saveButtonAction());
-        addImageButton.addActionListener(imageAction());
-        deleteButton.addActionListener(deleteAction());
+        this.saveButton.addActionListener(saveButtonAction());
+        this.addImageButton.addActionListener(imageAction());
+        this.deleteButton.addActionListener(deleteAction());
         //add panels to borderlayout
         this.getContentPane().setLayout(new BorderLayout());
         this.getContentPane().add("North", northPanel);
@@ -107,7 +109,7 @@ public class EditItemFrame extends JFrame {
                 int quantity = Integer.parseInt(quantityField.getText());
                 String description = descriptionField.getText();
                 //TODO: logic to find itemId based on last id used in file
-                Item newItem = new Item(itemtochange.getItemId(), name, description, price, quantity, imageLocation);
+                Item newItem = new Item(itemtochange.getItemId(), name, description, price, quantity, quantitySold, imageLocation);
                 //TODO: add string representation of item to its file
                 System.out.println(newItem);
                 //read the file, save its content to array list, add new content

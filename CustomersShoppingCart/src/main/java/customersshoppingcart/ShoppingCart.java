@@ -53,7 +53,7 @@ public class ShoppingCart extends JFrame{
     public ShoppingCart(ArrayList<Item> cart, CustomerHomePage home) {
         super("Shopping Cart");
         //add content to shopping cart
-        shoppingCart = cart;
+        this.shoppingCart = cart;
         //update the pricelabel
         updatePrice();
         repaintPriceValue();
@@ -98,7 +98,7 @@ public class ShoppingCart extends JFrame{
         centerPanel.setLayout(new GridLayout(cartQuantity.size(), 1));
         Iterator value = itemData.iterator();
         while(value.hasNext()) {
-            ShoppingCartItemPanel itemPanel = new ShoppingCartItemPanel(shoppingCart, (Item) value.next(), 
+            ShoppingCartItemPanel itemPanel = new ShoppingCartItemPanel((Item) value.next(), 
                     cartQuantity, this);
             centerPanel.add(itemPanel);
         }

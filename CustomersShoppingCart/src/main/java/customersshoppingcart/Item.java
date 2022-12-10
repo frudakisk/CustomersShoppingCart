@@ -21,15 +21,17 @@ public class Item implements Serializable{
      * @param description a short description of the item
      * @param price the price of the item
      * @param quantity the quantity of the item in stock
+     * @param quantitySold the quantity sold of the item
      * @param image location of image file
      */
-    public Item(int itemId, String name, String description, double price, int quantity, String image) {
+    public Item(int itemId, String name, String description, double price, int quantity, int quantitySold, String image) {
         this.itemId = itemId;
         this.name = name;
         this.description = description;
         this.price = price;
         this.quantity = quantity;
         this.imageFileLocation = image;
+        this.quantitySold = quantitySold;
     }
     public void updateId(int id){
         this.itemId = id;
