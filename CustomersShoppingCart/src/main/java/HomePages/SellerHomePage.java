@@ -100,7 +100,6 @@ public class SellerHomePage extends JFrame{
                 revenuePage rev = new revenuePage(items); 
                 rev.setSize(500,500);
                 rev.setVisible(true);
-                rev.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             }
             
         };
