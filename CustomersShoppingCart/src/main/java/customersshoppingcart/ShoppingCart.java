@@ -158,11 +158,16 @@ public class ShoppingCart extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //code here
-                dispose();
-                Checkout Checkout = new Checkout(tempCart, home, cartQuantity);
-                Checkout.setSize(500,500);
-                Checkout.setVisible(true);
-                Checkout.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                if(!tempCart.isEmpty()){
+                    dispose();
+                    Checkout Checkout = new Checkout(tempCart, home, cartQuantity);
+                    Checkout.setSize(500,500);
+                    Checkout.setVisible(true);
+                    Checkout.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Nothing in Cart!");
+                }
+
             }
             
         };

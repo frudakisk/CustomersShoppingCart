@@ -131,17 +131,49 @@ public class Checkout extends JFrame{
         al = new ActionListener() {
             public void actionPerformed(ActionEvent e){
             
-            CustomersShoppingCart inventory = new CustomersShoppingCart();    
-                
-            for(int i = 0; i < inventory.itemArray.size(); i++) {
-                
-                int quantity = cartQuantity.get(item.getName());
-                int Quantitysold = item.getQuantitySold();
-                inventory.itemArray.set(i, element)
-                item.updateQuantitySold(quantity+Quantitysold);
-                int itemquantity = item.getQuantity();
-                item.updateQuantity(itemquantity-quantity);
+            CustomersShoppingCart inventory = new CustomersShoppingCart();
+            ArrayList<Item> inv = inventory.itemArray;
+            
+            System.out.println("itemArray: " + inv);
+            System.out.println("temp: " + temp);
+            System.out.println("cartQuantity: " + cartQuantity);
+            
+            //updating the quantity in store - should be less than current quantity
+            
+            for(int i = 0; i < inv.size(); i++) {
+                if(cartQuantity.containsKey(inv.get(i).getName())) {
+                    System.out.println("For item: " + inv.get(i).getName());
+                    System.out.println("quantity before: " + inv.get(i).getQuantity());
+                    System.out.println("quantity sold before: " + inv.get(i).getQuantitySold());
+                    int currentQuantity = inv.get(i).getQuantity();
+                    //update quantity left in store
+                    inv.get(i).updateQuantity(currentQuantity - cartQuantity.get(inv.get(i).getName()));
+                    //update quantity sold
+                    int currentQuantitySold = inv.get(i).getQuantitySold();
+                    inv.get(i).updateQuantitySold(currentQuantitySold + cartQuantity.get(inv.get(i).getName()));
+                    System.out.println("quantity after: " + inv.get(i).getQuantity());
+                    System.out.println("quantity sold after: " + inv.get(i).getQuantitySold());
+                }
             }
+            
+            //update the items by the cartQuantity
+            
+            
+            //find key
+                
+//            for(int i = 0; i < inventory.itemArray.size(); i++) {
+//                Item item = inventory.itemArray.get(i);
+//                int quantity = cartQuantity.get(item.getName());
+//                
+//                    
+//                int Quantitysold = item.getQuantitySold();
+//                item.updateQuantitySold(quantity+Quantitysold);
+//                int itemquantity = item.getQuantity();
+//                item.updateQuantity(itemquantity-quantity);
+//                inventory.itemArray.set(i, item);
+//
+//            }
+            inventory.addItemToFile();
                 
                 
                 
