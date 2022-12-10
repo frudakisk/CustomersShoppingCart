@@ -12,7 +12,8 @@ import javax.swing.JFrame;
 import loginPage.*;
 
 /**
- * This is the main file for this application
+ * This is the main file for this application. Within this file the items are read and added to a txt file. 
+ * As well, the log in panel is being displayed.
  * @author fruda
  */
 public class CustomersShoppingCart {
@@ -22,6 +23,7 @@ public class CustomersShoppingCart {
     
     /***
      * Constructor for CustomersShoppingCart page
+     * This allocates what is in the readFile function into itemArry variable. 
      */
     public CustomersShoppingCart() {
         //Add in items from file
@@ -60,6 +62,15 @@ public class CustomersShoppingCart {
         return itemTemp;
     }
     
+    
+    
+    
+    /***
+     * Adds an item to a file. 
+     * @itemArray is added to the file 
+     * This function handles IOexeption
+     */    
+
     public void addItemToFile() {
          try
         {
@@ -79,6 +90,8 @@ public class CustomersShoppingCart {
     /***
      * main function for running application
      * @param args 
+     * In the main function the login page will be displayed.
+     * Customer log in info is being passed into this function.
      */
     public static void main(String[] args) {
         CustomersShoppingCart customer = new CustomersShoppingCart();

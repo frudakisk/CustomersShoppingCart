@@ -149,7 +149,9 @@ public class ShoppingCart extends JFrame{
     
     /***
      * action to flow to the checkout page
-     * This will need some parameters for sure later on
+     * @param tempCart Passes the item placed in the shopping cart to the checkout frame 
+     * @param home the home screen that spawns the shoppingCart frame
+     * @param cartQuantity Passes the amount placed in the shopping cart to the checkout frame 
      * @return al - the action
      */
         public ActionListener checkOutAction(ArrayList<Item> tempCart, CustomerHomePage home, HashMap<String, Integer> cartQuantity) {
