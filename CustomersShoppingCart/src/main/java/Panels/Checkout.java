@@ -5,6 +5,7 @@
 package Panels;
 
 import HomePages.CustomerHomePage;
+import HomePages.SellerHomePage;
 import customersshoppingcart.CustomersShoppingCart;
 import customersshoppingcart.Item;
 import java.awt.*;
@@ -111,7 +112,7 @@ public class Checkout extends JFrame{
         southPanel.add(continueButton);
         
         //set up button actions
-        continueButton.addActionListener(continueButtonAction(tempCart, cartQuantity));
+        continueButton.addActionListener(continueButtonAction(tempCart, cartQuantity, home));
         cancelButton.addActionListener(cancelButtonAction(tempCart, home));
         
         //add panels to borderlayout
@@ -126,7 +127,7 @@ public class Checkout extends JFrame{
         this.setVisible(true);
     }
     
-    private ActionListener continueButtonAction(ArrayList<Item> temp, HashMap<String, Integer> cartQuantity) {
+    private ActionListener continueButtonAction(ArrayList<Item> temp, HashMap<String, Integer> cartQuantity, CustomerHomePage home) {
         ActionListener al;
         al = new ActionListener() {
             public void actionPerformed(ActionEvent e){
@@ -157,12 +158,14 @@ public class Checkout extends JFrame{
             }
             inventory.addItemToFile();
                 
-                
-                
+                dispose();
+                CustomerHomePage homePage = home;
+                homePage.setSize(500,500);
+                homePage.setVisible(true);
                 receipt receipt = new receipt(temp, cartQuantity); //show new frame
                 receipt.setSize(500,500);
                 receipt.setVisible(true);
-                receipt.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                
             }
         };
         return al;

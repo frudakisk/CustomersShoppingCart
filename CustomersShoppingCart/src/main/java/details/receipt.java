@@ -46,14 +46,23 @@ public class receipt extends JFrame {
         northPanel.add(subtotalLabel);
         
         centerPanel.setLayout(new GridLayout(itemsArray.size(),1));
-        
+        ArrayList<Item> reciept = new ArrayList<Item>();
         for(int i = 0; i < itemsArray.size(); i++) {
             Item item = itemsArray.get(i);
+            if(!reciept.contains(item)){
+                reciept.add(item);
+            }
+        }
+        for(int i = 0; i < reciept.size(); i++){
+            Item item = reciept.get(i);
             JPanel itemPanel = new receiptPanel(item, cartQuantity);
             centerPanel.add(itemPanel);
             int quantity = cartQuantity.get(item.getName());
             total += (item.getPrice()*quantity);
         }
+        
+        
+        
         this.totalout.setText(Double.toString(total));
         southPanel.setLayout(new GridLayout(1,2));
         southPanel.add(totalLabel);

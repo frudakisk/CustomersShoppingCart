@@ -81,6 +81,7 @@ public class ShoppingCartItemPanel extends JPanel{
             public void actionPerformed(ActionEvent e) {
                 //store quantity, not shopping cart quantity
                 String quantityString = quantity.getText();
+                //int index = shoppingCart.indexOf(item);
                 //check the max quantity in store
                 if(!quantityString.equals(itemArray.get(4))) {
                     
@@ -97,7 +98,7 @@ public class ShoppingCartItemPanel extends JPanel{
                     String totalPriceString = Double.toString(totalPriceDouble);
                     totalPrice.setText(totalPriceString);
                     //make sure these changes are reflected in the shopping cart
-                    shoppingCart.clear();
+                    
                     shoppingCart.add(item);
                     
                     //printing out shoppingCart to see new results
@@ -107,7 +108,7 @@ public class ShoppingCartItemPanel extends JPanel{
                     
                     //update the ShoppingCartSouthPanel priceLabel
                     home.updatePrice();
-                    home.repaintPriceValue();;
+                    home.repaintPriceValue();
                     
                 }
                                 
