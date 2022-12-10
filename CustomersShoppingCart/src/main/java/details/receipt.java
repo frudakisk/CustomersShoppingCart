@@ -4,17 +4,16 @@
  */
 package details;
 
+import HomePages.CustomerHomePage;
 import Panels.receiptPanel;
-import Panels.revenuePanel;
 import customersshoppingcart.Item;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import javax.swing.*;
 
 /**
  *
@@ -24,7 +23,7 @@ public class receipt extends JFrame {
     private ArrayList<Item> itemsArray = new ArrayList<>();
     private JLabel titleLabel = new JLabel("Title");
     private JLabel quantityLabel = new JLabel("Quantity");
-    
+    private JButton returnButton = new JButton("Return to Store");
     private JLabel priceLabel = new JLabel("Price");
     private JLabel subtotalLabel = new JLabel("Subtotal");
     private JLabel totalLabel = new JLabel("Total");
@@ -35,7 +34,7 @@ public class receipt extends JFrame {
     private double total = 0;
     
     
-    public receipt(ArrayList<Item> temp, HashMap<String, Integer> cartQuantity){
+    public receipt(ArrayList<Item> temp, HashMap<String, Integer> cartQuantity, ArrayList<Item> inventory){
         super("Receipt");
         this.itemsArray = temp;
         System.out.println(temp);
@@ -64,9 +63,13 @@ public class receipt extends JFrame {
         
         
         this.totalout.setText(Double.toString(total));
-        southPanel.setLayout(new GridLayout(1,2));
+        southPanel.setLayout(new GridLayout(1,3));
         southPanel.add(totalLabel);
         southPanel.add(totalout);
+        southPanel.add(returnButton);
+        
+        //create action for button
+        returnButton.addActionListener(returnToStore(inventory));
         
         this.getContentPane().setLayout(new BorderLayout());
         this.getContentPane().add("North", northPanel);
@@ -74,5 +77,22 @@ public class receipt extends JFrame {
         this.getContentPane().add("Center", centerPanel);
         this.getContentPane().add("South", southPanel);
 
+    }
+    
+    private ActionListener returnToStore(ArrayList<Item> inventory) {
+        ActionListener al;
+        al = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //dispose of current screen
+                dispose();
+                //return to the customerhomepage with the inventory list passed
+                CustomerHomePage customer = new CustomerHomePage(inventory);
+                customer.setSize(500,500);
+                customer.setVisible(true);
+                customer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            } 
+        };
+        return al;
     }
 }

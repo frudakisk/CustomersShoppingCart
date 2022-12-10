@@ -127,6 +127,13 @@ public class Checkout extends JFrame{
         this.setVisible(true);
     }
     
+    /***
+     * 
+     * @param temp customers shopping cart
+     * @param cartQuantity hash map that shows quantity of item in cart
+     * @param home the screen to be redirected to 
+     * @return 
+     */
     private ActionListener continueButtonAction(ArrayList<Item> temp, HashMap<String, Integer> cartQuantity, CustomerHomePage home) {
         ActionListener al;
         al = new ActionListener() {
@@ -158,13 +165,18 @@ public class Checkout extends JFrame{
             }
             inventory.addItemToFile();
                 
-                dispose();
-                CustomerHomePage homePage = home;
-                homePage.setSize(500,500);
-                homePage.setVisible(true);
-                receipt receipt = new receipt(temp, cartQuantity); //show new frame
-                receipt.setSize(500,500);
-                receipt.setVisible(true);
+            //dispose the current checkout screen
+            dispose();
+            //bring up the receipt screen
+            receipt receipt = new receipt(temp, cartQuantity, inv); //show new frame
+            receipt.setSize(500,500);
+            receipt.setVisible(true);
+            //clear the shopping cart and update price panel
+            temp.clear();
+//            CustomerHomePage homePage = home;
+//            homePage.setSize(500,500);
+//            homePage.setVisible(true);
+            
                 
             }
         };
