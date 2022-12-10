@@ -184,7 +184,8 @@ This online free software will allow us to design our frames without adding any 
 
 Java
 This project will be run by Java and its libraries. As an object Oriented environment, this language is best suited for what we are going to be implementing.
-###Instructions
+
+#Instructions
 1. run the project in netbeans. 
 2. images are displayed via filepaths that are dependent on the machine the program is running on, to see images you must login into the admin account and either edit the items or add new ones. john 12345 is the admin account. everything else should be intuitive. 
 3. if no items are displayed it might be a filepath issue add items via the admin account.
