@@ -60,6 +60,21 @@ public class CustomersShoppingCart {
         return itemTemp;
     }
     
+    public void addItemToFile() {
+         try
+        {
+            FileOutputStream fos = new FileOutputStream("items.txt");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(itemArray);
+            oos.close();
+            fos.close();
+        } 
+        catch (IOException ioe) 
+        {
+            System.out.println("Error in addItemToFile");
+            ioe.printStackTrace();
+        }
+    }
     
     /***
      * main function for running application

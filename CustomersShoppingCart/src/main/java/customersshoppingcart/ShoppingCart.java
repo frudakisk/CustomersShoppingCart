@@ -65,9 +65,6 @@ public class ShoppingCart extends JFrame{
         northPanel.add(title);
         northPanel.add(checkOutButton);
         
-        //add button action listeners
-        backButton.addActionListener(backAction(shoppingCart, home));
-        checkOutButton.addActionListener(checkOutAction(cart, home));
         
         //load the hashmap with shoppingCart content everytime we load this page
         for(int i = 0; i < shoppingCart.size(); i++) {
@@ -79,7 +76,13 @@ public class ShoppingCart extends JFrame{
                 cartQuantity.put(name, newQuantity);
             }
         }
-            
+        
+        
+        //add button action listeners
+        backButton.addActionListener(backAction(shoppingCart, home));
+        checkOutButton.addActionListener(checkOutAction(cart, home, cartQuantity)); 
+        
+        
         //using a set to create unique list of shopping cart items of type Item
         //each item should show once in the shopping cart screen
         //and have an associated quantity with them
@@ -149,14 +152,14 @@ public class ShoppingCart extends JFrame{
      * This will need some parameters for sure later on
      * @return al - the action
      */
-        public ActionListener checkOutAction(ArrayList<Item> tempCart, CustomerHomePage home) {
+        public ActionListener checkOutAction(ArrayList<Item> tempCart, CustomerHomePage home, HashMap<String, Integer> cartQuantity) {
         ActionListener al;
         al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //code here
                 dispose();
-                Checkout Checkout = new Checkout(tempCart, home);
+                Checkout Checkout = new Checkout(tempCart, home, cartQuantity);
                 Checkout.setSize(500,500);
                 Checkout.setVisible(true);
                 Checkout.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
